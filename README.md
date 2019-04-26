@@ -1,1 +1,1 @@
-This is the repository for the Spanish Bingo Project
+This is the repository for the Spanish Bingo Project.
