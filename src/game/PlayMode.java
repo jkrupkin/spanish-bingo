@@ -3,6 +3,8 @@ package game;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 // All "main operation" code should be stored in this class
 // A static class for main game code
 public class PlayMode {
