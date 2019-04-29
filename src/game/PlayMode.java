@@ -1,5 +1,7 @@
 package game;
 
+// All "main operation" code should be stored in this class
+// A static class for main game code
 public class PlayMode {
 	// TODO: main program area; main menu setup
 	public static void main(String[] args) {
@@ -21,4 +23,6 @@ public class PlayMode {
 	private static String[] getFilenameList() {
 		
 	}
+	
+	// TODO: file-reading method
 }
