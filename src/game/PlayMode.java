@@ -30,7 +30,7 @@ public class PlayMode {
 	// TODO: filename-getting method
 	// reads the source directory, and produces a list of the names for all .zip files
 	private static String[] getFilenameList() {
-		String[] s;
+		String[] s = null;
 		
 		// here be code
 		
