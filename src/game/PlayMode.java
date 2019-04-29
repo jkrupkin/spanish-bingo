@@ -1,5 +1,6 @@
 package game;
 
+import java.util.LinkedList;
 import java.util.List;
 
 // All "main operation" code should be stored in this class
@@ -38,6 +39,10 @@ public class PlayMode {
 	
 	// TODO: file-reading method
 	private static List<Word> getWords(String[] chosenGroups) {
+		List<Word> l = new LinkedList<>();
 		
+		// more code
+		
+		return l;
 	}
 }
