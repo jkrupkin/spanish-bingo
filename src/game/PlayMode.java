@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import shared.Word;
+
 // All "main operation" code should be stored in this class
 // A static class for main game code
 public class PlayMode {
