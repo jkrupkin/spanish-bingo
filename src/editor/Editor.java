@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class EditorMainMenu {
+public class Editor {
 	private static JFrame window;
 	
 	// TODO: Main method for editor program
