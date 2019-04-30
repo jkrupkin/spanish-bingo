@@ -1,5 +1,6 @@
 package editor;
 //code from https://github.com/Harium/espeak-java
+//espeak is required for this to work
 import java.io.IOException;
 
 /**
