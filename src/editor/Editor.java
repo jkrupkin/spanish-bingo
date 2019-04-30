@@ -76,7 +76,6 @@ public class Editor {
 			panel.setLayout(new FlowLayout());
 			JTextField t = new JTextField();
 			t.setText(filePath);
-			//t.setPreferredSize(new Dimension(100, 20));
 			panel.add(t);
 			JButton b = new JButton("SND");
 			panel.add(b);
