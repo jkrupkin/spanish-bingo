@@ -2,6 +2,8 @@ package editor;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.List;
+import java.awt.ScrollPane;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,14 +11,23 @@ import javax.swing.JPanel;
 
 public class Editor {
 	private static JFrame window;
+	private static int width, height, border;
 	
 	// TODO: Main method for editor program
 	public static void main(String[] args) {
 		window = new JFrame();
+		width = 400;
+		height = 500;
+		border = 5;
 		
 		JPanel mainMenu = new JPanel();
 		mainMenu.setLayout(new BorderLayout());
 		
+		ScrollPane wordScroller = new ScrollPane();
+		JPanel wordPanel = new JPanel();
+		
+		wordScroller.add(wordPanel);
+		mainMenu.add(wordScroller, BorderLayout.CENTER);
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
