@@ -1,41 +1,45 @@
 package editor;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.List;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Editor {
 	private static JFrame window;
-	private static int width, height, border;
 	
-	// TODO: Main method for editor program
+	// entry method for editor program
 	public static void main(String[] args) {
+		// window setup
 		window = new JFrame();
-		width = 400;
-		height = 500;
-		border = 5;
 		
-		JPanel mainMenu = new JPanel();
-		mainMenu.setLayout(new BorderLayout());
+		window.setLayout(new BorderLayout());
 		
 		ScrollPane wordScroller = new ScrollPane();
-		JPanel wordPanel = new JPanel();
+		window.add(wordScroller, BorderLayout.CENTER);
 		
+		JPanel wordPanel = new JPanel();
+		wordPanel.setLayout(new BoxLayout(wordPanel, BoxLayout.PAGE_AXIS));
 		wordScroller.add(wordPanel);
-		mainMenu.add(wordScroller, BorderLayout.CENTER);
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
-		buttons.add(new JButton("Add New Word(s)"));
-		buttons.add(new JButton("Save Set as Zip File"));
-		mainMenu.add(buttons, BorderLayout.PAGE_END);
+		window.add(buttons, BorderLayout.PAGE_END);
 		
-		window.add(mainMenu);
+		JButton b = new JButton("Add New Word(s)");
+		b.addActionListener(new AddWordListener(wordPanel));
+		buttons.add(b);
+		
+		b = new JButton("Save Set as Zip File");
+		buttons.add(b);
 		
 		/*
 		 * JFrame
@@ -52,5 +56,40 @@ public class Editor {
 		
 		window.setSize(400, 500);
 		window.setVisible(true);
+	}
+	
+	private static class AddWordListener implements ActionListener {
+		JPanel target;
+		
+		AddWordListener(JPanel target) {
+			this.target = target;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			genNewWord("debug");
+			target.revalidate();
+		}
+		
+		private void genNewWord(String filePath) {
+			JPanel panel = new JPanel();
+			panel.setLayout(new FlowLayout());
+			JTextField t = new JTextField();
+			t.setText(filePath);
+			//t.setPreferredSize(new Dimension(100, 20));
+			panel.add(t);
+			JButton b = new JButton("SND");
+			panel.add(b);
+			b = new JButton("DEL");
+			panel.add(b);
+			target.add(panel);
+		}
+	}
+	
+	private static class WordPanel extends JPanel {
+		WordPanel() {
+			super();
+			setLayout(new FlowLayout());
+		}
 	}
 }
