@@ -8,4 +8,8 @@ public class Word {
 	String name;
 	Image pic;
 	Clip audioClip;
+	
+	public void readWordAloud() {
+		
+	}
 }
