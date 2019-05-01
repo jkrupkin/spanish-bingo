@@ -17,6 +17,7 @@ public class EditorUI extends JFrame {
 	 * aka: JAVA STOP SHOUTING AT ME, I KNOW WHAT IM DOING MOOOOOOM
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final int WIDTH = 400, HEIGHT = 500;
 
 	public EditorUI() {
 		super();
@@ -42,11 +43,13 @@ public class EditorUI extends JFrame {
 		b.addActionListener(new DropWordListener());
 		buttons.add(b);
 		
+		// TODO at current width + layout, this button gets cut off
+		// 		find a way to set things up so it isn't
 		b = new JButton("Save Set as Zip File");
 		b.addActionListener(new ZipWordListener());
 		buttons.add(b);
 		
-		this.setSize(400, 500);
+		this.setSize(WIDTH, HEIGHT);
 		this.setVisible(true);
 	}
 	
