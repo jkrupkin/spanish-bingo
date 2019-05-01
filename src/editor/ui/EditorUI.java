@@ -50,7 +50,7 @@ public class EditorUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code for "properly" adding a new word to the set
-			// will probably use a popup window of some sort
+			// will probably use a popup dialogue window of some sort
 			// current version is just debug code
 			
 			target.add(new WordPanel("word", "imageLocation", "soundLocation"));
