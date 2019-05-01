@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import editor.Editor.AddWordListener;
-
 public class EditorUI extends JFrame {
 	public EditorUI() {
 		super();
