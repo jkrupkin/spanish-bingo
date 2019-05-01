@@ -10,9 +10,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class EditorUI extends JFrame {
+	/**
+	 * default serial version ID
+	 * aka: JAVA STOP SHOUTING AT ME, I KNOW WHAT IM DOING MOOOOOOM
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EditorUI() {
 		super();
 		
@@ -33,7 +38,12 @@ public class EditorUI extends JFrame {
 		b.addActionListener(new AddWordListener(wordPanel));
 		buttons.add(b);
 		
+		b = new JButton("Remove selected words");
+		b.addActionListener(new DropWordListener());
+		buttons.add(b);
+		
 		b = new JButton("Save Set as Zip File");
+		b.addActionListener(new ZipWordListener());
 		buttons.add(b);
 		
 		this.setSize(400, 500);
@@ -58,10 +68,18 @@ public class EditorUI extends JFrame {
 		}
 	}
 	
+	// TODO implement word removal
 	private static class DropWordListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	// TODO implement "zip contents to file" functionality
+	private static class ZipWordListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
 			
 		}
 	}
