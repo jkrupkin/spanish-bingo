@@ -29,7 +29,7 @@ public class EditorUI extends JFrame {
 		buttons.setLayout(new FlowLayout());
 		this.add(buttons, BorderLayout.PAGE_END);
 		
-		JButton b = new JButton("Add New Word(s)");
+		JButton b = new JButton("Add New Word");
 		b.addActionListener(new AddWordListener(wordPanel));
 		buttons.add(b);
 		
@@ -49,8 +49,20 @@ public class EditorUI extends JFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			// TODO Code for "properly" adding a new word to the set
+			// will probably use a popup window of some sort
+			// current version is just debug code
+			
 			target.add(new WordPanel("word", "imageLocation", "soundLocation"));
 			target.revalidate();
+		}
+	}
+	
+	private static class DropWordListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 }
