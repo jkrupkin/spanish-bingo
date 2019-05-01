@@ -62,28 +62,24 @@ public class EditorUI extends JFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			genNewWord("debug");
+			target.add(new WordPanel("debug"));
 			target.revalidate();
-		}
-		
-		private void genNewWord(String filePath) {
-			JPanel panel = new JPanel();
-			panel.setLayout(new FlowLayout());
-			JTextField t = new JTextField();
-			t.setText(filePath);
-			panel.add(t);
-			JButton b = new JButton("SND");
-			panel.add(b);
-			b = new JButton("DEL");
-			panel.add(b);
-			target.add(panel);
 		}
 	}
 	
 	private static class WordPanel extends JPanel {
-		WordPanel() {
+		WordPanel(String filePath) {
 			super();
 			setLayout(new FlowLayout());
+			
+			JTextField t = new JTextField();
+			t.setText(filePath);
+			this.add(t);
+			
+			JButton b = new JButton("SND");
+			this.add(b);
+			b = new JButton("DEL");
+			this.add(b);
 		}
 	}
 }
