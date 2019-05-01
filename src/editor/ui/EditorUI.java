@@ -1,4 +1,4 @@
-package editor;
+package editor.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -36,19 +36,6 @@ public class EditorUI extends JFrame {
 		b = new JButton("Save Set as Zip File");
 		buttons.add(b);
 		
-		/*
-		 * JFrame
-		 * - Center
-		 * - - List of cards currently in system
-		 * - - - Flow Layout
-		 * - - - - Card Name (editable)
-		 * - - - - 
-		 * - Bottom
-		 * - - Flow Layout
-		 * - - - Button("Add New Card(s)")
-		 * - - - Button("Compress to .zip")
-		 */
-		
 		this.setSize(400, 500);
 		this.setVisible(true);
 	}
@@ -62,24 +49,8 @@ public class EditorUI extends JFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			target.add(new WordPanel("debug"));
+			target.add(new WordPanel("word", "imageLocation", "soundLocation"));
 			target.revalidate();
-		}
-	}
-	
-	private static class WordPanel extends JPanel {
-		WordPanel(String filePath) {
-			super();
-			setLayout(new FlowLayout());
-			
-			JTextField t = new JTextField();
-			t.setText(filePath);
-			this.add(t);
-			
-			JButton b = new JButton("SND");
-			this.add(b);
-			b = new JButton("DEL");
-			this.add(b);
 		}
 	}
 }
