@@ -1,15 +1,29 @@
 package shared;
 
-import java.awt.Image;
-
-import javax.sound.sampled.Clip;
+import java.io.File;
 
 public class Word {
-	String name;
-	Image pic;
-	Clip audioClip;
+	String word;
+	File pic;
+	File audioClip;
 	
-	public void readWordAloud() {
-		
+	public Word(String word,String picturePath,String audioPath) {
+		this.word = word;
+		pic = new File(picturePath);
+		audioClip = new File(audioPath);
 	}
+	
+	public File getPic() {
+		return pic;
+	}
+
+	public File getAudioClip() {
+		return audioClip;
+	}
+
+	public String getWord() {
+		return word;
+	}
+	
+	
 }
