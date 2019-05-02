@@ -1,33 +1,40 @@
 package editor.ui;
 
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class WordPanel extends JPanel {
+import shared.Word;
+
+public class WordPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	JCheckBox box;
-	JTextField wordText;
-	JTextField imageDir;
-	JTextField soundDir;
+	Word word;
+	JButton delete;
+	JLabel text;
 
-	WordPanel(String word, String imagePath, String soundPath) {
+	WordPanel(String wordText, String imagePath, String soundPath) {
 		super();
-		setLayout(new FlowLayout());
 		
-		// TODO make interface tools actually functional 
-		//		i.e. have some data structure holding all
-		this.add(new JCheckBox());
-		this.add(new JTextField(word));
-		this.add(new JTextField(imagePath));
-		this.add(new JTextField(soundPath));
+		this.word = new Word(wordText, imagePath, soundPath);
 		
-		JButton b = new JButton("SND");
-		this.add(b);
-		b = new JButton("X");
-		this.add(b);
+		
+		// layout setup
+		setLayout(new Flow());
+		delete = new JButton("[X]");
+		delete.addActionListener(this);
+		this.add(delete);
+		
+		text = new JLabel("   \"" + wordText + "\"  [IMG: \"" + imagePath + "\", SND: \"" + soundPath + "\"]");
+		this.add(text);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
 	}
 }
