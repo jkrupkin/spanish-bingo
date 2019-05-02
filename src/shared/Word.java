@@ -4,8 +4,8 @@ import java.io.File;
 
 public class Word {
 	String word;
-	File pic;
-	File audioClip;
+	private File pic;
+	private File audioClip;
 	
 	public Word(String word,String picturePath,String audioPath) {
 		this.word = word;
