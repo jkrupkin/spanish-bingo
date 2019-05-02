@@ -1,6 +1,6 @@
 package editor.ui;
 
-import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,7 +23,7 @@ public class WordPanel extends JPanel implements ActionListener {
 		
 		
 		// layout setup
-		setLayout(new Flow());
+		setLayout(new FlowLayout());
 		delete = new JButton("[X]");
 		delete.addActionListener(this);
 		this.add(delete);
