@@ -3,7 +3,7 @@ package shared;
 import java.io.File;
 
 public class Word {
-	String word;
+	private String word;
 	private File pic;
 	private File audioClip;
 	
