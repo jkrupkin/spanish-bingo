@@ -5,11 +5,11 @@ import java.util.zip.*;
 import org.json.*;
 public class FileHandler {
 
-	//Creates .zip file from given ArrayList
+	// TODO Creates .zip file from given ArrayList
 	public void writeVocab(ArrayList<Word> words) {
 		
 	}
-	//Creates an ArrayList of Words with given .zip file
+	// TODO Creates an ArrayList of Words from given .zip file
 	public ArrayList<Word> readVocab(File zip)
 	{
 		

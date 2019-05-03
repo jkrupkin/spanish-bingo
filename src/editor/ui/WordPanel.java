@@ -34,7 +34,8 @@ public class WordPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
-		
+		// method only called when "delete" button is pushed
+		// removes the panel from the UI
+		this.getParent().remove(this);
 	}
 }
