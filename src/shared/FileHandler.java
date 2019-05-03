@@ -9,6 +9,10 @@ public class FileHandler {
 	public void writeVocab(ArrayList<Word> words) {
 		String json = createJSON(words);
 		System.out.println(json);
+		File audioDir = new File("audio");
+		File imageDir = new File("images");
+		audioDir.mkdir();
+		imageDir.mkdir();
 	}
 	// TODO Creates an ArrayList of Words from given .zip file
 	public ArrayList<Word> readVocab(File zip)
