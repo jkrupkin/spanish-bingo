@@ -66,11 +66,13 @@ public class EditorUI extends JFrame implements ActionListener {
 			wordPanel.revalidate();
 		} else if (b == saveSetButton) {
 			ArrayList<Word> wordList = new ArrayList<>();
-			// TODO code for saving all files to a compressed .zip folder
+			
 			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
 			for (WordPanel wp : wpa) {
 				wordList.add(wp.word);
 			}
+			
+			// TODO add method calls for saving all files to a compressed .zip folder
 		}
 	}
 }
