@@ -1,14 +1,21 @@
 package shared;
 import java.io.File;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.zip.*;
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 public class FileHandler {
 
 	// TODO Creates .zip file from given ArrayList
 	public void writeVocab(ArrayList<Word> words) {
 		String json = createJSON(words);
 		System.out.println(json);
+		File audioDir = new File("audio");
+		File imageDir = new File("images");
+		audioDir.mkdir();
+		imageDir.mkdir();
 	}
 	// TODO Creates an ArrayList of Words from given .zip file
 	public ArrayList<Word> readVocab(File zip)
