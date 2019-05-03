@@ -5,11 +5,14 @@ import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import shared.Word;
 
 public class EditorUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -52,22 +55,24 @@ public class EditorUI extends JFrame implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent event)
-	{
+	public void actionPerformed(ActionEvent event) {
 		JButton b = (JButton) event.getSource();
-		if (b == newWordButton)
-		{
+		if (b == newWordButton) {
 			// TODO Code for "properly" adding a new word to the set
 			// will probably use a popup dialogue window of some sort
 			// current version is just debug code
 			
 			wordPanel.add(new WordPanel("word", "imageLocation", "soundLocation"));
 			wordPanel.revalidate();
-		}
-		else if (b == saveSetButton)
-		{
-			// TODO code for saving all files to a compressed .zip folder
+		} else if (b == saveSetButton) {
+			ArrayList<Word> wordList = new ArrayList<>();
 			
+			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
+			for (WordPanel wp : wpa) {
+				wordList.add(wp.word);
+			}
+			
+			// TODO add method calls for saving all files to a compressed .zip folder
 		}
 	}
 }
