@@ -7,7 +7,8 @@ public class FileHandler {
 
 	//Creates .zip file from given ArrayList
 	public void writeVocab(ArrayList<Word> words) {
-		
+		String json = createJSON(words);
+		System.out.println(json);
 	}
 	//Creates an ArrayList of Words with given .zip file
 	public ArrayList<Word> readVocab(File zip)
@@ -16,15 +17,16 @@ public class FileHandler {
 		return new ArrayList<Word>(); //TODO: Change return variable
 	}
 	private String createJSON(ArrayList<Word> words) {
-		ArrayList<String> word = new ArrayList<String>();
-		ArrayList<String> imagePath = new ArrayList<String>();
-		ArrayList<String> audioPath = new ArrayList<String>();
+
+		JSONArray wordsJSON = new JSONArray("words");
 		for(Word w : words) {
-			word.add(w.getWord());
-			imagePath.add(w.getPic().getPath());
-			audioPath.add(w.getAudioClip().getPath());
-			
+			JSONObject word = new JSONObject();
+			word.put("word", w.getWord());
+			word.put("image", w.getPic().getPath());
+			word.put("audio", w.getAudioClip().getPath());
+			wordsJSON.put(word);
 		}
-		return "";
+		
+		return wordsJSON.toString();
 	}
 }
