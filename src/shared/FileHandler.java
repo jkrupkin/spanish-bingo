@@ -18,7 +18,7 @@ public class FileHandler {
 	}
 	private String createJSON(ArrayList<Word> words) {
 
-		JSONArray wordsJSON = new JSONArray("words");
+		JSONArray wordsJSON = new JSONArray();
 		for(Word w : words) {
 			JSONObject word = new JSONObject();
 			word.put("word", w.getWord());
