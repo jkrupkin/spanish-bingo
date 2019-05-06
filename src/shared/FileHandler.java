@@ -1,12 +1,16 @@
 package shared;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.zip.*;
@@ -48,6 +52,7 @@ public class FileHandler {
 			word.put("image", newImagePath.toString());
 			word.put("audio", newAudioPath.toString());
 			wordsJSON.put(word);
+			i++;
 		}
 		BufferedWriter bw = new BufferedWriter(new FileWriter(wordsFile));
 		bw.write(wordsJSON.toString());
@@ -72,8 +77,27 @@ public class FileHandler {
 	}
 	
 	// TODO Creates an ArrayList of Words from given .zip file
-	public static ArrayList<Word> readVocab(File zip) {
-		
-		return new ArrayList<Word>(); //TODO: Change return variable
+	public static ArrayList<Word> readVocab(String zip) throws ZipException, IOException {
+		ZipFile zf = new ZipFile(zip);
+		ZipEntry json = zf.getEntry("words.json");
+		InputStream is = zf.getInputStream(json);
+		String jsonStr;
+		ArrayList<Word> words = new ArrayList<Word>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			jsonStr = br.readLine();
+		br.close();
+		zf.close();
+		System.out.println("Reading from zip: " + jsonStr);
+		JSONArray wordsJSON = new JSONArray(jsonStr);
+		for(int i = 0; i < wordsJSON.length(); i++) {
+			JSONObject word = wordsJSON.getJSONObject(i);
+			String wordStr = word.getString("word");
+			String imagePath = word.getString("image");
+			String audioPath = word.getString("audio");
+			Word w = new Word(wordStr, imagePath, audioPath);
+			words.add(w);
+			System.out.println(wordStr + ", " + imagePath + ", " + audioPath);
+		}
+		return words;
 	}
 }
