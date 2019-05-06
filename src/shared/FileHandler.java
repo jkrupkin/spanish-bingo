@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 public class FileHandler {
 
-	// TODO Creates .zip file from given ArrayList
+	// TODO Creates .zip file from given ArrayList and path
 	public static void writeVocab(ArrayList<Word> words, String path) throws IOException {
 		///Create the JSON String and directory Structure for .zip file
 		JSONArray wordsJSON = new JSONArray();
