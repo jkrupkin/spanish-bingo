@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 
 public class FileHandler {
-
 	// TODO Creates .zip file from given ArrayList and path
 	public static void writeVocab(ArrayList<Word> words, String path) throws IOException {
 		///Create the JSON String and directory Structure for .zip file
@@ -56,9 +55,8 @@ public class FileHandler {
 		toZip(wordsFile.getPath(), zos);
 		zos.close();
 		fos.close();
-
-		
 	}
+	
 	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
 		FileInputStream fis = new FileInputStream(f);
 		ZipEntry ze = new ZipEntry(f);
@@ -78,6 +76,4 @@ public class FileHandler {
 		
 		return new ArrayList<Word>(); //TODO: Change return variable
 	}
-	
-
 }
