@@ -23,3 +23,8 @@
 hs_err_pid*
 /bin/
 TTS.java
+/images/
+/audio/
+/test.jpg
+/test.wav
+/words.json
