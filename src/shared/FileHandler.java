@@ -66,7 +66,7 @@ public class FileHandler {
 	}
 	
 	// TODO Creates an ArrayList of Words from given .zip file
-	public ArrayList<Word> readVocab(File zip) {
+	public static ArrayList<Word> readVocab(File zip) {
 		
 		return new ArrayList<Word>(); //TODO: Change return variable
 	}
