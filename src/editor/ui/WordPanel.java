@@ -1,5 +1,6 @@
 package editor.ui;
 
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ public class WordPanel extends JPanel implements ActionListener {
 		
 		
 		// layout setup
-		setLayout(new FlowLayout());
+		this.setLayout(new FlowLayout());
 		delete = new JButton("[X]");
 		delete.addActionListener(this);
 		this.add(delete);
@@ -36,6 +37,8 @@ public class WordPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// this method is only called when "delete" button is pushed
 		// it removes the panel from the UI
-		this.getParent().remove(this);
+		Container parent = this.getParent();
+		parent.remove(this);
+		parent.revalidate();
 	}
 }
