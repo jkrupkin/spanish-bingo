@@ -20,32 +20,40 @@ public class FileHandler {
 	// TODO Creates .zip file from given ArrayList
 	public static void writeVocab(ArrayList<Word> words, String path) throws IOException {
 		///Create the JSON String and directory Structure for .zip file
-		String json = createJSON(words);
-		System.out.println(json);
+		JSONArray wordsJSON = new JSONArray();
 		File audioDir = new File("audio");
 		File imageDir = new File("images");
-		File wordsJSON = new File("words.json");
+		File wordsFile = new File("words.json");
 		audioDir.mkdir();
 		imageDir.mkdir();		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(wordsJSON));
-		bw.write(json);
-		bw.close();
+
 		
 		FileOutputStream fos = new FileOutputStream(path);
 		ZipOutputStream zos = new ZipOutputStream(fos);
+		int i = 0;
 		for (Word w : words) {
-			Path newImagePath = Paths.get("images/" + w.getPic().getName());
+			String imageExt = w.getPic().getName().substring(w.getPic().getName().indexOf('.'));
+			String audioExt = w.getAudioClip().getName().substring(w.getAudioClip().getName().indexOf('.'));
+			Path newImagePath = Paths.get("images/" + i + imageExt);
 			Path originalImagePath = w.getPic().toPath();
 			
-			Path newAudioPath = Paths.get("audio/" + w.getAudioClip().getName());
-			Path originalAudioPath = w.getPic().toPath();
+			Path newAudioPath = Paths.get("audio/" + i + audioExt);
+			Path originalAudioPath = w.getAudioClip().toPath();
 			Files.copy(originalImagePath, newImagePath, StandardCopyOption.REPLACE_EXISTING);
 			Files.copy(originalAudioPath, newAudioPath, StandardCopyOption.REPLACE_EXISTING);
 			
-			toZip("images/" + w.getPic().getName(), zos);
-			toZip("audio/" + w.getAudioClip().getName(), zos);
+			toZip(newImagePath.toString(), zos);
+			toZip(newAudioPath.toString(), zos);
+			JSONObject word = new JSONObject();
+			word.put("word", w.getWord());
+			word.put("image", newImagePath.toString());
+			word.put("audio", newAudioPath.toString());
+			wordsJSON.put(word);
 		}
-		toZip(wordsJSON.getPath(), zos);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(wordsFile));
+		bw.write(wordsJSON.toString());
+		bw.close();
+		toZip(wordsFile.getPath(), zos);
 		zos.close();
 		fos.close();
 
@@ -71,16 +79,5 @@ public class FileHandler {
 		return new ArrayList<Word>(); //TODO: Change return variable
 	}
 	
-	private static String createJSON(ArrayList<Word> words) {
-		JSONArray wordsJSON = new JSONArray();
-		for(Word w : words) {
-			JSONObject word = new JSONObject();
-			word.put("word", w.getWord());
-			word.put("image", w.getPic().getPath());
-			word.put("audio", w.getAudioClip().getPath());
-			wordsJSON.put(word);
-		}
-		
-		return wordsJSON.toString();
-	}
+
 }
