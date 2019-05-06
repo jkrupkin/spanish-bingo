@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -26,7 +27,7 @@ public class EditorUI extends JFrame implements ActionListener {
 
 	public EditorUI() {
 		// initial setup
-		super();
+		super("Spanish Bingo Card Set Creator");
 		setLayout(new BorderLayout());
 		
 		// central scrolling area
@@ -60,9 +61,10 @@ public class EditorUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		JButton b = (JButton) event.getSource();
 		if (b == newWordButton) {
-			// TODO Code for "properly" adding a new word to the set
-			// will probably use a popup dialogue window of some sort
-			// current version is just debug code
+			JFrame popup = new JFrame();
+			
+			JFileChooser imageChooser = new JFileChooser();
+			popup.add(imageChooser);
 			
 			wordPanel.add(new WordPanel("word", "imageLocation", "soundLocation"));
 			wordPanel.revalidate();
