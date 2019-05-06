@@ -1,4 +1,5 @@
 package shared;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,12 +10,15 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.zip.*;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+
 public class FileHandler {
 
 	// TODO Creates .zip file from given ArrayList
-	public void writeVocab(ArrayList<Word> words, String path) throws IOException {
+	public static void writeVocab(ArrayList<Word> words, String path) throws IOException {
 		///Create the JSON String and directory Structure for .zip file
 		String json = createJSON(words);
 		System.out.println(json);
@@ -40,8 +44,6 @@ public class FileHandler {
 			
 			toZip("images/" + w.getPic().getName(), zos);
 			toZip("audio/" + w.getAudioClip().getName(), zos);
-
-			
 		}
 		toZip(wordsJSON.getPath(), zos);
 		zos.close();
@@ -49,7 +51,7 @@ public class FileHandler {
 
 		
 	}
-	private void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
+	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
 		FileInputStream fis = new FileInputStream(f);
 		ZipEntry ze = new ZipEntry(f);
 		zos.putNextEntry(ze);
@@ -62,14 +64,14 @@ public class FileHandler {
 		fis.close();
 		
 	}
+	
 	// TODO Creates an ArrayList of Words from given .zip file
-	public ArrayList<Word> readVocab(File zip)
-	{
+	public ArrayList<Word> readVocab(File zip) {
 		
 		return new ArrayList<Word>(); //TODO: Change return variable
 	}
-	private String createJSON(ArrayList<Word> words) {
-
+	
+	private static String createJSON(ArrayList<Word> words) {
 		JSONArray wordsJSON = new JSONArray();
 		for(Word w : words) {
 			JSONObject word = new JSONObject();
