@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import shared.FileHandler;
 import shared.Word;
 
 public class EditorUI extends JFrame implements ActionListener {
@@ -72,7 +74,15 @@ public class EditorUI extends JFrame implements ActionListener {
 				wordList.add(wp.word);
 			}
 			
-			// TODO add method calls for saving all files to a compressed .zip folder
+			// TODO get card set name (for name of zip file)
+			String s = "";
+			
+			try {
+				FileHandler.writeVocab(wordList, s);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
