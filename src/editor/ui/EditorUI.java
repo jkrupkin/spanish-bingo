@@ -18,7 +18,7 @@ import shared.Word;
 
 public class EditorUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 400, HEIGHT = 500;
+	public static final int WIDTH = 640, HEIGHT = 480;
 	
 	ScrollPane wordScroller;
 	JPanel wordPanel, buttons;
