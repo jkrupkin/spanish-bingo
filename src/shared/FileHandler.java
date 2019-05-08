@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,6 +74,7 @@ public class FileHandler {
 		fis.close();
 		
 	}
+
 	
 	// TODO Creates an ArrayList of Words from given .zip file
 	public static ArrayList<Word> readVocab(String zip) throws ZipException, IOException {
