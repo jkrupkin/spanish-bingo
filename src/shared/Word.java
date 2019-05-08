@@ -7,13 +7,18 @@ public class Word {
 
 	private String word;
 	private File pic;
-	private File audioClip;
+	private File audio;
 
 	public Word(String word, String picturePath, String audioPath) {
-
 		this.word = word;
 		pic = new File(picturePath);
-		audioClip = new File(audioPath);
+		audio = new File(audioPath);
+	}
+	
+	public Word(String word, File pictureFile, File audioFile) {
+		this.word = word;
+		pic = pictureFile;
+		audio = audioFile;
 	}
 	
 	public File getPic() {
@@ -21,7 +26,7 @@ public class Word {
 	}
 
 	public File getAudioClip() {
-		return audioClip;
+		return audio;
 	}
 
 	public String getWord() {
