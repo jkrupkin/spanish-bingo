@@ -66,14 +66,14 @@ public class EditorUI extends JFrame implements ActionListener {
 			JFileChooser imageChooser = new JFileChooser();
 			popup.add(imageChooser);
 			
-			wordPanel.add(new WordPanel("word", "imageLocation", "soundLocation"));
+			wordPanel.add(new WordPanel(this));
 			wordPanel.revalidate();
 		} else if (b == saveSetButton) {
 			ArrayList<Word> wordList = new ArrayList<>();
 			
 			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
 			for (WordPanel wp : wpa) {
-				wordList.add(wp.word);
+				wordList.add(wp.getWord());
 			}
 			
 			// TODO get card set name (for name of zip file)
@@ -86,5 +86,12 @@ public class EditorUI extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void dropListWord(WordPanel wp) {
+		wordPanel.remove(wp);
+		wordPanel.revalidate();
+		
+		// TODO panel does not update properly when the last word is removed (erroneous behavior)
 	}
 }
