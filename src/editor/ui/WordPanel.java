@@ -34,11 +34,12 @@ public class WordPanel extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// this method is only called when "delete" button is pushed
-		// it removes the panel from the UI
-		Container parent = this.getParent();
-		parent.remove(this);
-		parent.revalidate();
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() == delete) {
+			Container parent = this.getParent();
+			parent.remove(this);
+			parent.revalidate();
+			return;
+		}
 	}
 }
