@@ -60,10 +60,14 @@ public class WordPanel extends JPanel implements ActionListener {
 		} else { // select file for word
 			int result = fileChooser.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) {
-				if (source == setImage)
+				if (source == setImage) {
 					imageFile = fileChooser.getSelectedFile();
-				else if (source == setSound)
+					imageFileName.setText(imageFile.getName());
+				} else if (source == setSound) {
 					soundFile = fileChooser.getSelectedFile();
+					soundFileName.setText(soundFile.getName());
+				}
+				this.revalidate();
 			}
 		}
 	}
