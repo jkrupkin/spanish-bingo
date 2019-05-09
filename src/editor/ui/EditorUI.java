@@ -24,6 +24,7 @@ public class EditorUI extends JFrame implements ActionListener {
 	ScrollPane wordScroller;
 	JPanel wordPanel, buttons;
 	JButton newWordButton, saveSetButton;
+	JFileChooser fileChooser;
 
 	public EditorUI() {
 		// initial setup

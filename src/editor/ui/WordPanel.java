@@ -25,7 +25,7 @@ public class WordPanel extends JPanel implements ActionListener {
 	WordPanel(EditorUI e) {
 		super();
 		editor = e;
-		fileChooser = new JFileChooser();
+		fileChooser = e.fileChooser;
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 		
 		// layout setup
