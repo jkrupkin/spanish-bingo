@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -62,26 +63,22 @@ public class EditorUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		JButton b = (JButton) event.getSource();
 		if (b == newWordButton) {
-			JFrame popup = new JFrame();
-			
-			JFileChooser imageChooser = new JFileChooser();
-			popup.add(imageChooser);
-			
 			wordPanel.add(new WordPanel(this));
 			wordPanel.revalidate();
 		} else if (b == saveSetButton) {
-			ArrayList<Word> wordList = new ArrayList<>();
-			
+			ArrayList<Word> wordList = new ArrayList<>();			
 			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
-			for (WordPanel wp : wpa) {
+			for (WordPanel wp : wpa)
 				wordList.add(wp.getWord());
-			}
 			
-			// TODO get card set name (for name of zip file)
-			String s = "";
-			
-			try {
-				FileHandler.writeVocab(wordList, s);
+			int retrival = fileChooser.showSaveDialog(this);			
+			if (retrival == JFileChooser.APPROVE_OPTION) try {
+				File f = fileChooser.getSelectedFile();
+				
+				// TODO: check to make sure that 
+				
+				// TODO: tell FileHandler to write the file
+				FileHandler.writeVocab(wordList, "debug.zip");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
