@@ -1,53 +1,32 @@
 package game;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.swing.JFrame;
-
-import shared.Word;
 
 // All "main operation" code should be stored in this class
 // A static class for main game code
-public class PlayMode {
-	private static JFrame window;
-	private static List<Word> wordList;
-	
-	// TODO: main program area; main menu setup
+@SuppressWarnings("serial")
+public class PlayMode extends JFrame {
 	public static void main(String[] args) {
+		PlayMode mode = new PlayMode();
+	}
+	
+	// TODO: main loop
+	public PlayMode() {
 		
 	}
 	
-	private class mainMenu extends JFrame {
+	// TODO: sub-method for main menu setup
+	private void setupMainMenu() {
 		
 	}
 	
-	// TODO: sub-method for practice window
-	private static void practiceMode() {
+	// TODO: sub-method for practice window setup
+	private void setupPractice() {
 		
 	}
 	
 	// TODO: sub-method for bingo game window
-	private static void bingoGame() {
+	private void setupBingo() {
 		
-	}
-	
-	// TODO: filename-getting method
-	// reads the source directory, and produces a list of the names for all .zip files
-	private static String[] getFilenameList() {
-		String[] s = null;
-		
-		// here be code
-		
-		return s;
-	}
-	
-	// TODO: file-reading method
-	private static List<Word> getWords(String[] chosenGroups) {
-		List<Word> l = new LinkedList<>();
-		
-		// more code
-		
-		return l;
 	}
 }
