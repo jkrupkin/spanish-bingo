@@ -66,19 +66,20 @@ public class EditorUI extends JFrame implements ActionListener {
 			wordPanel.add(new WordPanel(this));
 			wordPanel.revalidate();
 		} else if (b == saveSetButton) {
+			// construct a word ArrayList
 			ArrayList<Word> wordList = new ArrayList<>();			
 			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
 			for (WordPanel wp : wpa)
 				wordList.add(wp.getWord());
 			
+			// get the name of the file to save to
 			int retrival = fileChooser.showSaveDialog(this);			
 			if (retrival == JFileChooser.APPROVE_OPTION) try {
-				File f = fileChooser.getSelectedFile();
-				
-				// TODO: check to make sure that 
-				
-				// TODO: tell FileHandler to write the file
-				FileHandler.writeVocab(wordList, "debug.zip");
+				String s = fileChooser.getSelectedFile().getAbsolutePath();
+				int index = s.lastIndexOf(".");
+				if (index == -1 || !(s.substring(index).equalsIgnoreCase(".zip")))
+					s = s + ".zip";
+				FileHandler.writeVocab(wordList, s);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
