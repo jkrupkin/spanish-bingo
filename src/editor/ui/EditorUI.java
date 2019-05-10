@@ -1,6 +1,7 @@
 package editor.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,7 @@ public class EditorUI extends JFrame implements ActionListener {
 	JPanel wordPanel, buttons;
 	JButton newWordButton, saveSetButton;
 	JFileChooser fileChooser;
+	ArrayList<WordPanel> wordPanelList;
 
 	public EditorUI() {
 		// initial setup
@@ -33,6 +35,7 @@ public class EditorUI extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		wordPanelList = new ArrayList<>();
 		
 		// central scrolling area
 		wordScroller = new ScrollPane();
@@ -65,13 +68,14 @@ public class EditorUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		JButton b = (JButton) event.getSource();
 		if (b == newWordButton) {
-			wordPanel.add(new WordPanel(this));
+			WordPanel wp = new WordPanel(this);
+			wordPanel.add(wp);
+			wordPanelList.add(wp);
 			wordPanel.revalidate();
 		} else if (b == saveSetButton) {
 			// construct a word ArrayList
-			ArrayList<Word> wordList = new ArrayList<>();			
-			WordPanel[] wpa = (WordPanel[]) wordPanel.getComponents();
-			for (WordPanel wp : wpa)
+			ArrayList<Word> wordList = new ArrayList<>();
+			for (WordPanel wp : wordPanelList)
 				wordList.add(wp.getWord());
 			
 			// get the name of the file to save to
@@ -82,6 +86,10 @@ public class EditorUI extends JFrame implements ActionListener {
 				if (index == -1 || !(s.substring(index).equalsIgnoreCase(".zip")))
 					s = s + ".zip";
 				FileHandler.writeVocab(wordList, s);
+				
+				// TODO remove all words from wordPanel and wordPanelList
+				
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
