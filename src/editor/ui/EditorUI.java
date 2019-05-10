@@ -31,6 +31,8 @@ public class EditorUI extends JFrame implements ActionListener {
 		// initial setup
 		super("Spanish Bingo Card Set Creator");
 		setLayout(new BorderLayout());
+		fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 		
 		// central scrolling area
 		wordScroller = new ScrollPane();
