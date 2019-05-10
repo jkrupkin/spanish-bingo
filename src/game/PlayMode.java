@@ -1,11 +1,6 @@
 package game;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.swing.JFrame;
-
-import shared.Word;
 
 // All "main operation" code should be stored in this class
 // A static class for main game code
@@ -16,6 +11,9 @@ public class PlayMode extends JFrame {
 	}
 	
 	// TODO: main loop
+	public PlayMode() {
+		
+	}
 	
 	// TODO: sub-method for main menu setup
 	private void setupMainMenu() {
