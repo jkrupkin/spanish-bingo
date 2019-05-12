@@ -61,13 +61,12 @@ public class FileHandler {
 		fos.close();
 	}
 	
-	private static ArrayList<File> getListOfZips(String path) {
-		
+	// TODO Returns a list of .zip files from the specified directory (relative or absolute)
+	public static ArrayList<File> getListOfZips(String path) {
 		return new ArrayList<File>();
 	}
-	private static ArrayList<File> getListOfZips() {
-		return getListOfZips("");
-	}
+	
+	
 	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
 		FileInputStream fis = new FileInputStream(f);
 		ZipEntry ze = new ZipEntry(f);
