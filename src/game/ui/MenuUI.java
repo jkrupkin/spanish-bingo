@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class BingoUI extends JPanel implements ActionListener {
+public class MenuUI extends JPanel implements ActionListener {
 	
-	
+
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 	}
