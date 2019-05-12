@@ -1,13 +1,12 @@
 package shared;
 
+import java.awt.Image;
 import java.io.File;
 
 public class Word {
-
-
 	private String word;
-	private File pic;
-	private File audio;
+	private File audio, pic;
+	private Image image;
 
 	public Word(String word, String picturePath, String audioPath) {
 		this.word = word;
