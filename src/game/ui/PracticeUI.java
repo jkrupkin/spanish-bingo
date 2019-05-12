@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.PlayMode;
@@ -12,17 +13,22 @@ import game.PlayMode;
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
 	PlayMode main;
-	JPanel center;
+	JLabel wordLabel, cardImage;
 	JButton goLeft, goRight, shuffle;
 	
-	PracticeUI() {
+	public PracticeUI() {
 		super();		
 		this.setLayout(new BorderLayout());
 		
-		center = new JPanel();
-		// TODO center setup (display image
-		this.add(center, BorderLayout.CENTER);
+		//TODO do stuff re: storing the set of words being used
 		
+		wordLabel = new JLabel("DEBUG MODE");
+		//TODO write the name of the current word into wordLabel
+		this.add(wordLabel, BorderLayout.PAGE_START);
+		
+		cardImage = new JLabel();
+		// TODO center setup (display image
+		this.add(cardImage, BorderLayout.CENTER);
 		
 		goLeft = new JButton("<-");
 		goLeft.addActionListener(this);
