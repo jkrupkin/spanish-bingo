@@ -3,12 +3,14 @@ package game.ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.PlayMode;
+import shared.Word;
 
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
@@ -53,5 +55,10 @@ public class PracticeUI extends JPanel implements ActionListener {
 		} else if (source == shuffle) {
 			// TODO shuffle the deck
 		}
+	}
+
+	public void update(ArrayList<Word> wordList) {
+		// TODO Auto-generated method stub
+		
 	}
 }

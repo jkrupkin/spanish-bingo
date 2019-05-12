@@ -33,6 +33,10 @@ public class PlayMode {
 		window.setVisible(true);
 	}
 	
+	private void setModeMenu() {
+		window.add(menu);
+	}
+	
 	private void setModePractice() {
 		window.add(practice);
 		window.setSize(640, 480);
