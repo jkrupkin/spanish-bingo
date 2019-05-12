@@ -41,4 +41,8 @@ public class PlayMode {
 		window.add(practice);
 		window.setSize(640, 480);
 	}
+	
+	private void setModeBingo() {
+		window.add(bingo);
+	}
 }
