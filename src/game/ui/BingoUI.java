@@ -12,7 +12,7 @@ public class BingoUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
