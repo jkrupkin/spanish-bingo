@@ -71,7 +71,7 @@ public class WordPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-	public Word getWord() {
-		return new Word(wordName.getText(), imageFile, soundFile);
-	}
+	//public Word getWord() {
+		//return new Word(wordName.getText(), imageFile, soundFile);
+	//}
 }
