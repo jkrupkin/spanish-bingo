@@ -62,9 +62,6 @@ public class FileHandler {
 	}
 	
 	// TODO Returns a list of .zip files from the specified directory (relative or absolute)
-	public static ArrayList<File> getListOfZips(String path) {
-		return new ArrayList<File>();
-	}
 	
 	
 	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
@@ -85,25 +82,26 @@ public class FileHandler {
 	// TODO Creates an ArrayList of Words from given .zip file
 	public static ArrayList<Word> readVocab(String zip) throws ZipException, IOException {
 		ZipFile zf = new ZipFile(zip);
-		ZipEntry json = zf.getEntry("words.json");
-		InputStream is = zf.getInputStream(json);
-		String jsonStr;
 		ArrayList<Word> words = new ArrayList<Word>();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			jsonStr = br.readLine();
-		br.close();
+		JSONArray wordsJSON =readJSON(zf);
 		zf.close();
-		System.out.println("Reading from zip: " + jsonStr);
-		JSONArray wordsJSON = new JSONArray(jsonStr);
 		for(int i = 0; i < wordsJSON.length(); i++) {
 			JSONObject word = wordsJSON.getJSONObject(i);
 			String wordStr = word.getString("word");
-			String imagePath = word.getString("image");
-			String audioPath = word.getString("audio");
-			Word w = new Word(wordStr, imagePath, audioPath);
+			Word w = new Word(wordStr, zip);
 			words.add(w);
-			System.out.println(wordStr + ", " + imagePath + ", " + audioPath);
+			System.out.println(wordStr);
 		}
 		return words;
+	}
+	public static JSONArray readJSON(ZipFile zf) throws IOException {
+		ZipEntry json = zf.getEntry("words.json");
+		InputStream is = zf.getInputStream(json);
+		String jsonStr;
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			jsonStr = br.readLine();
+		br.close();
+		JSONArray wordsJSON = new JSONArray(jsonStr);
+		return wordsJSON;
 	}
 }
