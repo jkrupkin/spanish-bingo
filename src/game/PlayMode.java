@@ -41,33 +41,34 @@ public class PlayMode implements WindowListener, ActionListener {
 		bingo = new BingoUI();
 		
 
-		setModeMenu();
+		setState(State.MENU);
 
 		window.addWindowListener(this);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.setVisible(true);
 	}
 	
-	private void setModeMenu() {
-		dropCurrentMode();
-		window.add(menu);
-		window.setSize(480, 640);
-		state = State.MENU;
-	}	
-	private void setModePractice() {
-		dropCurrentMode();
-		window.add(practice);
-		window.setSize(640, 480);
-		state = State.PRACTICE;
-	}	
-	private void setModeBingo() {
-		dropCurrentMode();
-		window.add(bingo);
-		//TODO set the size of the window
-		state = State.BINGO;
-	}
-	private void dropCurrentMode() {
-		window.getContentPane().removeAll();
+	private void setState(State newState) {
+		switch (newState) {
+		case BINGO:
+			window.setSize(640, 640);
+			window.setContentPane(bingo);
+			state = State.BINGO;
+			break;
+			
+		case PRACTICE:
+			window.setSize(640, 480);
+			window.setContentPane(practice);
+			state = State.PRACTICE;
+			break;
+			
+		case MENU:
+			window.setSize(640, 480);
+			window.setContentPane(menu);
+			state = State.MENU;
+			break;
+		}
+		window.revalidate();
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class PlayMode implements WindowListener, ActionListener {
 		ArrayList<Word> wordList = menu.genWordList();
 		if (src == menu.startPractice()) {
 			practice.update(wordList);
-			this.setModePractice();
+			this.setState(State.PRACTICE);
 		} else if (src == menu.startBingo()) {
 			Collections.shuffle(wordList);
 			
@@ -86,7 +87,7 @@ public class PlayMode implements WindowListener, ActionListener {
 				wordList.remove(n);
 			
 			bingo.update(wordList, menu.getMarkWrongAnswer());
-			this.setModeBingo();
+			this.setState(State.BINGO);
 		}
 	}
 
@@ -118,7 +119,7 @@ public class PlayMode implements WindowListener, ActionListener {
 		if (i == JOptionPane.YES_OPTION)
 			System.exit(0);
 		else if (i == JOptionPane.NO_OPTION && state != State.MENU)
-			setModeMenu();
+			setState(State.MENU);
 	}
 	
 	@Override

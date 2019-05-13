@@ -17,7 +17,7 @@ import shared.Word;
 public class PracticeUI extends JPanel implements ActionListener {
 	PlayMode main;
 	JLabel wordLabel, cardImage;
-	JButton goLeft, goRight, shuffle;
+	JButton goLeft, goRight, shuffle, playAudio;
 	JPanel center;
 	
 	public PracticeUI() {
