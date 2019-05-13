@@ -1,6 +1,7 @@
 package shared;
 
 import java.awt.Image;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class Word {
 		String audioPath = wordJSON.getString("audio");
 		InputStream is = extractFile(imagePath);
 		imageData = ImageIO.read(is);
-		InputStream as = extractFile(audioPath);
+		BufferedInputStream as = new BufferedInputStream(extractFile(audioPath));
 		audioData = AudioSystem.getAudioInputStream(as);
 		
 	}
