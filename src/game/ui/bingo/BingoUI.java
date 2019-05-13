@@ -1,4 +1,4 @@
-package game.ui;
+package game.ui.bingo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,12 +22,10 @@ public class BingoUI extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	public void update(ArrayList<Word> wordList) {
-		// TODO Auto-generated method stub
+	public void update(ArrayList<Word> wordList, boolean markWrongAnswers) {
 		
 	}
 }

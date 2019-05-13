@@ -4,13 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import game.ui.BingoUI;
-import game.ui.MenuUI;
-import game.ui.PracticeUI;
+import game.ui.bingo.BingoUI;
+import game.ui.menu.MenuUI;
+import game.ui.practice.PracticeUI;
+import shared.Word;
 
 // All "main operation" code should be stored in this class
 // A static class for main game code
@@ -18,18 +22,17 @@ public class PlayMode implements WindowListener, ActionListener {
 	public static void main(String[] args) {
 		new PlayMode();
 	}
-	
 	private enum State {
 		MENU,
 		PRACTICE,
 		BINGO
 	};
 	
-	JFrame window;
-	MenuUI menu;
-	PracticeUI practice;
-	BingoUI bingo;
-	State state;
+	private JFrame window;
+	private MenuUI menu;
+	private PracticeUI practice;
+	private BingoUI bingo;
+	private State state;
 	
 	// TODO: main entrance
 	public PlayMode() {
@@ -66,9 +69,23 @@ public class PlayMode implements WindowListener, ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
 		
+		ArrayList<Word> wordList = menu.genWordList();
+		if (src == menu.startPractice) {
+			practice.update(wordList);
+			this.setModePractice();
+		} else if (src == menu.startBingo) {
+			Collections.shuffle(wordList);
+			
+			int n = menu.getElementCount();
+			while (wordList.size() > n)
+				wordList.remove(n);
+			
+			bingo.update(wordList, menu.getMarkWrongAnswer());
+			this.setModeBingo();
+		}
 	}
 
 	@Override
