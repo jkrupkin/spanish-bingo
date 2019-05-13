@@ -41,8 +41,7 @@ public class PlayMode implements WindowListener, ActionListener {
 		bingo = new BingoUI();
 		
 
-		//setModeMenu();
-		setModePractice();
+		setModeMenu();
 
 		window.addWindowListener(this);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
