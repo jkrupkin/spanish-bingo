@@ -75,7 +75,7 @@ public class Word {
 	public AudioInputStream getAudio() {
 		return audioData;
 	}
-	//Resets the audio stream after playback
+	//Resets the audio stream after playback. This needs to be done each time audio is played
 	public void resetAudioStream() throws IOException, UnsupportedAudioFileException {
 		if(isZip) {
 		String audioPath = getJSON().getString("audio");
