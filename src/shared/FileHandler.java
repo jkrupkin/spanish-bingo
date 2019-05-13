@@ -3,6 +3,7 @@ package shared;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.zip.*;
 
 import org.json.JSONArray;
@@ -62,7 +64,24 @@ public class FileHandler {
 	}
 	
 	// TODO Returns a list of .zip files from the specified directory (relative or absolute)
-	
+	public static ArrayList<File> zipsInDir(String dir){
+		File fDir = new File(dir);
+		FileFilter zipFilter = new FileFilter() {
+
+			@Override
+			public boolean accept(File arg0) {
+				if(arg0.getName().endsWith(".zip") && arg0.isFile())
+					return true;
+				else
+					return false;
+			}
+			
+		};
+		ArrayList<File> zips = new ArrayList<File>(Arrays.asList(fDir.listFiles(zipFilter)));
+		return zips;
+		
+		
+	}
 	
 	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {
 		FileInputStream fis = new FileInputStream(f);
