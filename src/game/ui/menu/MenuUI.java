@@ -33,7 +33,9 @@ public class MenuUI extends JPanel {
 			ZipElement z = new ZipElement(f);
 			zipFileList.add(z);
 			setSelector.add(z);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		this.add(setSelector);
 		
