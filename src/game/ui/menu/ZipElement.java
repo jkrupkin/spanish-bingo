@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.zip.ZipException;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ public class ZipElement extends JPanel {
 	JCheckBox checkbox;
 	JLabel title;
 	
-	public ZipElement(File zip) throws ZipException, IOException {
+	public ZipElement(File zip) throws ZipException, IOException, UnsupportedAudioFileException {
 		wordList = FileHandler.readVocab(zip.getAbsolutePath());
 		
 		// TODO code to create the visual presentation of the ZipElement JPanel
