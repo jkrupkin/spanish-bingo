@@ -69,6 +69,10 @@ public class Word {
 	public AudioInputStream getAudio() {
 		return audioData;
 	}
+	public void resetAudioStream() throws IOException {
+		audioData.mark(Integer.MAX_VALUE);
+		audioData.reset();
+	}
 
 	public String getWord() {
 		return word;
