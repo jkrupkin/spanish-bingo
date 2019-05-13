@@ -23,7 +23,6 @@ public class ZipElement extends JPanel {
 	public ZipElement(File zip) throws ZipException, IOException, UnsupportedAudioFileException {
 		wordList = FileHandler.readVocab(zip.getAbsolutePath());
 		
-		// TODO code to create the visual presentation of the ZipElement JPanel
 		this.setLayout(new FlowLayout());
 		
 		checkbox = new JCheckBox();
