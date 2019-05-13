@@ -15,7 +15,7 @@ import org.json.JSONPointer;
 
 public class Word {
 	private String word;
-	private File audio, pic;
+	private File audio, pic; //These are only used when writing to the zip
 	private ZipFile zip;
 	private Image imageData;
 	
@@ -31,24 +31,30 @@ public class Word {
 		this.word = word;
 		zip = new ZipFile(zipStr);
 		JSONArray wordsJSON = FileHandler.readJSON(zip);
+		JSONObject wordJSON = null;
 		for(int i=0; i < wordsJSON.length(); i++) {
-			JSONObject wordJSON = wordsJSON.getJSONObject(i);
+			JSONObject currWord = wordsJSON.getJSONObject(i);
 			String currentWord = wordJSON.getString("word");
-			if(currentWord.equals(word))
+			if(currentWord.equals(word)) {
+				wordJSON = currWord;
 				break;
-			
+			}
 		}
+		String imagePath = wordJSON.getString("image");
+		InputStream is = extractFile(imagePath);
+		imageData = ImageIO.read(is);
 		
 		
 	}
-	
+	//Used for FileHandler
 	protected File getPic() {
 		return pic;
 	}
-
+	//Used for FileHandler
 	protected File getAudioClip() {
 		return audio;
 	}
+	//Retrieves the raw image data
 	public Image getImage() {
 		return imageData;
 	}
@@ -56,6 +62,7 @@ public class Word {
 	public String getWord() {
 		return word;
 	}
+	//Extracts file from associated zip file(if used with constructor)
 	private InputStream extractFile(String file) throws IOException {
 		ZipEntry ze = zip.getEntry(file);
 		InputStream is = zip.getInputStream(ze);
