@@ -3,26 +3,36 @@ package game.ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import game.PlayMode;
+import shared.Word;
 
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
 	PlayMode main;
-	JPanel center;
+	JLabel wordLabel, cardImage;
 	JButton goLeft, goRight, shuffle;
+	JPanel center;
 	
-	PracticeUI() {
+	public PracticeUI() {
 		super();		
 		this.setLayout(new BorderLayout());
 		
 		center = new JPanel();
-		// TODO center setup (display image
-		this.add(center, BorderLayout.CENTER);
 		
+		wordLabel = new JLabel("SETUP");
+		center.add(wordLabel, BorderLayout.PAGE_START);
+		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		
+		cardImage = new JLabel();
+		// TODO center setup (display image
+		this.add(cardImage, BorderLayout.CENTER);
 		
 		goLeft = new JButton("<-");
 		goLeft.addActionListener(this);
@@ -47,5 +57,10 @@ public class PracticeUI extends JPanel implements ActionListener {
 		} else if (source == shuffle) {
 			// TODO shuffle the deck
 		}
+	}
+
+	public void update(ArrayList<Word> wordList) {
+		// TODO Auto-generated method stub
+		
 	}
 }
