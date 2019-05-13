@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import game.PlayMode;
 import shared.Word;
@@ -27,6 +28,7 @@ public class PracticeUI extends JPanel implements ActionListener {
 		wordLabel = new JLabel("DEBUG MODE");
 		//TODO write the name of the current word into wordLabel
 		this.add(wordLabel, BorderLayout.PAGE_START);
+		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		
 		cardImage = new JLabel();
 		// TODO center setup (display image
