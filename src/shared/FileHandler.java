@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.*;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -64,8 +66,13 @@ public class FileHandler {
 	}
 	
 	// Returns a list of .zip files from the specified directory (relative or absolute)
+	//If given an empty string it will assume the current working directory
 	public static ArrayList<File> zipsInDir(String dir){
-		File fDir = new File(dir);
+		File fDir = null;
+		if (!dir.isEmpty())
+			fDir = new File(dir);
+		else 
+			fDir = new File(".");
 		FileFilter zipFilter = new FileFilter() {
 
 			@Override
@@ -98,7 +105,7 @@ public class FileHandler {
 
 	
 	// TODO Creates an ArrayList of Words from given .zip file
-	public static ArrayList<Word> readVocab(String zip) throws ZipException, IOException {
+	public static ArrayList<Word> readVocab(String zip) throws ZipException, IOException, UnsupportedAudioFileException {
 		ZipFile zf = new ZipFile(zip);
 		ArrayList<Word> words = new ArrayList<Word>();
 		JSONArray wordsJSON =readJSON(zf);
