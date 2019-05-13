@@ -23,6 +23,7 @@ public class Word {
 	private ZipFile zip;
 	private Image imageData;
 	private AudioInputStream audioData;
+	private boolean isZip;
 	
 //Constructor for reading and writing
 	public Word(String word, String picturePath, String audioPath) throws IOException, UnsupportedAudioFileException {
@@ -30,12 +31,22 @@ public class Word {
 		pic = new File(picturePath);
 		audio = new File(audioPath);
 		imageData = ImageIO.read(pic);
-		audioData = AudioSystem.getAudioInputStream(audio);
+		isZip = false;
+		resetAudioStream();
 	}
 //Constructor for read-only usage from a zip
 	public Word(String word, String zipStr) throws IOException, UnsupportedAudioFileException {
 		this.word = word;
 		zip = new ZipFile(zipStr);
+		JSONObject wordJSON = getJSON();
+		String imagePath = wordJSON.getString("image");
+		String audioPath = wordJSON.getString("audio");
+		InputStream is = extractFile(imagePath);
+		imageData = ImageIO.read(is);
+		isZip = true;
+		resetAudioStream();
+	}
+	private JSONObject getJSON() throws IOException {
 		JSONArray wordsJSON = FileHandler.readJSON(zip);
 		JSONObject wordJSON = null;
 		for(int i=0; i < wordsJSON.length(); i++) {
@@ -45,14 +56,9 @@ public class Word {
 				wordJSON = currWord;
 				break;
 			}
-		}
-		String imagePath = wordJSON.getString("image");
-		String audioPath = wordJSON.getString("audio");
-		InputStream is = extractFile(imagePath);
-		imageData = ImageIO.read(is);
-		BufferedInputStream as = new BufferedInputStream(extractFile(audioPath));
-		audioData = AudioSystem.getAudioInputStream(as);
-		
+			}
+		return wordJSON;
+	
 	}
 	//Used for FileHandler
 	protected File getPic() {
@@ -69,9 +75,16 @@ public class Word {
 	public AudioInputStream getAudio() {
 		return audioData;
 	}
-	public void resetAudioStream() throws IOException {
-		audioData.mark(Integer.MAX_VALUE);
-		audioData.reset();
+	//Resets the audio stream after playback
+	public void resetAudioStream() throws IOException, UnsupportedAudioFileException {
+		if(isZip) {
+		String audioPath = getJSON().getString("audio");
+		BufferedInputStream as = new BufferedInputStream(extractFile(audioPath));
+		audioData = AudioSystem.getAudioInputStream(as);
+		}
+		else{
+		audioData = AudioSystem.getAudioInputStream(audio);
+		}
 	}
 
 	public String getWord() {
@@ -81,6 +94,7 @@ public class Word {
 	private InputStream extractFile(String file) throws IOException {
 		ZipEntry ze = zip.getEntry(file);
 		InputStream is = zip.getInputStream(ze);
+		
 		return is;
 		
 	}
