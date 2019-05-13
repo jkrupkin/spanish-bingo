@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import game.PlayMode;
@@ -16,7 +17,8 @@ import shared.Word;
 public class MenuUI extends JPanel {
 	
 	ScrollPane setSelector;
-	public JButton startPractice, startBingo;
+	JButton startPractice, startBingo;
+	JComboBox<String> gridSizeSelector;
 	private ArrayList<ZipElement> zipFileList;
 	
 	public MenuUI(PlayMode p) {
@@ -36,17 +38,20 @@ public class MenuUI extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		this.add(setSelector);
 		
 		// "start practice mode" button
 		startPractice = new JButton("START PRACTICE MODE");
 		startPractice.addActionListener(p);
+		this.add(startPractice);
 		
 		
-		// all bingo mode settings
-		// - grid size
-		// - mark incorrect answers option
+		// bingo mode grid size
+		String[] str = {"4x4", "5x5", "6x6"};
+		gridSizeSelector = new JComboBox<>(str);
+		this.add(gridSizeSelector);
+		
+		// bingo mode incorrect answers
 		
 		
 		
@@ -54,6 +59,7 @@ public class MenuUI extends JPanel {
 		// "start bingo mode" button
 		startBingo = new JButton("START BINGO GAME");
 		startBingo.addActionListener(p);
+		this.add(startBingo);
 	}
 	
 	public ArrayList<Word> genWordList() {
@@ -73,5 +79,12 @@ public class MenuUI extends JPanel {
 	public int getElementCount() {
 		//TODO get the number of elements to be placed in the bingo array
 		return 16;
+	}
+	
+	public JButton startPractice() {
+		return startPractice;
+	}
+	public JButton startBingo() {
+		return startBingo;
 	}
 }

@@ -49,21 +49,25 @@ public class PlayMode implements WindowListener, ActionListener {
 	}
 	
 	private void setModeMenu() {
+		dropCurrentMode();
 		window.add(menu);
-		//TODO set the size of the window
+		window.setSize(480, 640);
 		state = State.MENU;
-	}
-	
+	}	
 	private void setModePractice() {
+		dropCurrentMode();
 		window.add(practice);
 		window.setSize(640, 480);
 		state = State.PRACTICE;
-	}
-	
+	}	
 	private void setModeBingo() {
+		dropCurrentMode();
 		window.add(bingo);
 		//TODO set the size of the window
 		state = State.BINGO;
+	}
+	private void dropCurrentMode() {
+		window.getContentPane().removeAll();
 	}
 
 	@Override
@@ -71,10 +75,10 @@ public class PlayMode implements WindowListener, ActionListener {
 		Object src = e.getSource();
 		
 		ArrayList<Word> wordList = menu.genWordList();
-		if (src == menu.startPractice) {
+		if (src == menu.startPractice()) {
 			practice.update(wordList);
 			this.setModePractice();
-		} else if (src == menu.startBingo) {
+		} else if (src == menu.startBingo()) {
 			Collections.shuffle(wordList);
 			
 			int n = menu.getElementCount();
