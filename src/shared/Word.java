@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONPointer;
+
 
 public class Word {
 	private String word;
