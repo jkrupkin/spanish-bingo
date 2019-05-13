@@ -10,7 +10,6 @@ import java.util.Collections;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import game.ui.BingoUI;
 import game.ui.bingo.BingoUI;
 import game.ui.menu.MenuUI;
 import game.ui.practice.PracticeUI;
