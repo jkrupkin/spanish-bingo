@@ -18,16 +18,16 @@ public class PracticeUI extends JPanel implements ActionListener {
 	PlayMode main;
 	JLabel wordLabel, cardImage;
 	JButton goLeft, goRight, shuffle;
+	JPanel center;
 	
 	public PracticeUI() {
 		super();		
 		this.setLayout(new BorderLayout());
 		
-		//TODO do stuff re: storing the set of words being used
+		center = new JPanel();
 		
-		wordLabel = new JLabel("DEBUG MODE");
-		//TODO write the name of the current word into wordLabel
-		this.add(wordLabel, BorderLayout.PAGE_START);
+		wordLabel = new JLabel("SETUP");
+		center.add(wordLabel, BorderLayout.PAGE_START);
 		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		
 		cardImage = new JLabel();

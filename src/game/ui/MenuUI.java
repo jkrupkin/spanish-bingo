@@ -1,5 +1,6 @@
 package game.ui;
 
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,9 +12,20 @@ import shared.Word;
 @SuppressWarnings("serial")
 public class MenuUI extends JPanel implements ActionListener {
 	
+	ScrollPane setSelector;
+	
 	public MenuUI() {
 		super();
 		
+		// group select area
+		
+		
+		// "start practice mode" button
+		
+		
+		// bingo mode settings
+		// - grid size
+		// - mark incorrect answers
 		
 	}
 	
