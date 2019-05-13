@@ -34,7 +34,7 @@ public class Word {
 		JSONObject wordJSON = null;
 		for(int i=0; i < wordsJSON.length(); i++) {
 			JSONObject currWord = wordsJSON.getJSONObject(i);
-			String currentWord = wordJSON.getString("word");
+			String currentWord = currWord.getString("word");
 			if(currentWord.equals(word)) {
 				wordJSON = currWord;
 				break;
