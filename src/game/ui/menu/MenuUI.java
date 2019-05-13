@@ -73,12 +73,17 @@ public class MenuUI extends JPanel {
 	
 	public boolean getMarkWrongAnswer() {
 		//TODO get if wrong answers will be permanently marked incorrect
+		
+		
+		
+		
 		return true;
 	}
 	
 	public int getElementCount() {
-		//TODO get the number of elements to be placed in the bingo array
-		return 16;
+		int x = gridSizeSelector.getSelectedIndex();
+		x += 4;
+		return x * x;
 	}
 	
 	public JButton startPractice() {
