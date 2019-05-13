@@ -63,7 +63,7 @@ public class FileHandler {
 		fos.close();
 	}
 	
-	// TODO Returns a list of .zip files from the specified directory (relative or absolute)
+	// Returns a list of .zip files from the specified directory (relative or absolute)
 	public static ArrayList<File> zipsInDir(String dir){
 		File fDir = new File(dir);
 		FileFilter zipFilter = new FileFilter() {
