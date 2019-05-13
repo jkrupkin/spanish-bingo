@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -12,7 +14,7 @@ import game.ui.PracticeUI;
 
 // All "main operation" code should be stored in this class
 // A static class for main game code
-public class PlayMode implements WindowListener {
+public class PlayMode implements WindowListener, ActionListener {
 	public static void main(String[] args) {
 		new PlayMode();
 	}
@@ -64,6 +66,12 @@ public class PlayMode implements WindowListener {
 	}
 
 	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void windowClosing(WindowEvent e) {
 		int i = 0;
 		String s = "Exit Practice Mode?";
@@ -95,27 +103,15 @@ public class PlayMode implements WindowListener {
 	}
 	
 	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowOpened(WindowEvent e) {}
 	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowClosed(WindowEvent e) {}
 	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowActivated(WindowEvent e) {}
 	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowDeactivated(WindowEvent e) {}
 	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowIconified(WindowEvent e) {}
 	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void windowDeiconified(WindowEvent e) {}
 }
