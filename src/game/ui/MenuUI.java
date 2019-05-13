@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import shared.Word;
@@ -13,19 +15,33 @@ import shared.Word;
 public class MenuUI extends JPanel implements ActionListener {
 	
 	ScrollPane setSelector;
+	JButton startPractice, startBingo;
 	
-	public MenuUI() {
+	public MenuUI(ActionListener target) {
 		super();
 		
+		// TODO: decide whether to keep or replace BoxLayout
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
 		// group select area
+		setSelector = new ScrollPane();
 		
 		
 		// "start practice mode" button
+		startPractice = new JButton("START PRACTICE MODE");
+		startPractice.addActionListener(target);
 		
 		
-		// bingo mode settings
+		// all bingo mode settings
 		// - grid size
-		// - mark incorrect answers
+		// - mark incorrect answers option
+		
+		
+		
+		
+		// "start bingo mode" button
+		startBingo = new JButton("START BINGO GAME");
+		startBingo.addActionListener(target);
 		
 	}
 	

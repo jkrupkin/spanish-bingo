@@ -94,7 +94,6 @@ public class FileHandler {
 			zos.write(bytes,0,length);
 		zos.closeEntry();
 		fis.close();
-		
 	}
 
 	

@@ -34,7 +34,7 @@ public class PlayMode implements WindowListener, ActionListener {
 	// TODO: main entrance
 	public PlayMode() {
 		window = new JFrame();
-		menu = new MenuUI();
+		menu = new MenuUI(this);
 		practice = new PracticeUI();
 		bingo = new BingoUI();
 		
