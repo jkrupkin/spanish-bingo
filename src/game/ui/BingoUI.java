@@ -11,6 +11,12 @@ import shared.Word;
 @SuppressWarnings("serial")
 public class BingoUI extends JPanel implements ActionListener {
 	
+	public BingoUI() {
+		super();
+		
+		
+	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
