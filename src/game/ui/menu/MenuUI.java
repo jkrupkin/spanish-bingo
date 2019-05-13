@@ -1,6 +1,7 @@
 package game.ui.menu;
 
 import java.awt.ScrollPane;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -8,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import game.PlayMode;
+import shared.FileHandler;
 import shared.Word;
 
 @SuppressWarnings("serial")
@@ -20,17 +22,20 @@ public class MenuUI extends JPanel {
 	public MenuUI(PlayMode p) {
 		super();
 		
-		// TODO: decide whether to keep or replace BoxLayout
+		//TODO decide whether to keep or replace BoxLayout
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// group select area
-		setSelector = new ScrollPane();
-		setSelector.setLayout(new BoxLayout(setSelector, BoxLayout.PAGE_AXIS));
-		
+		setSelector = new ScrollPane();		
 		zipFileList = new ArrayList<>();
+		ArrayList<File> fl = FileHandler.zipsInDir("");
+		for (File f : fl) try {
+			ZipElement z = new ZipElement(f);
+			zipFileList.add(z);
+			setSelector.add(z);
+		} catch (Exception e) {}
 		
-		
-		
+		this.add(setSelector);
 		
 		// "start practice mode" button
 		startPractice = new JButton("START PRACTICE MODE");
