@@ -11,6 +11,8 @@ import shared.Word;
 @SuppressWarnings("serial")
 public class BingoUI extends JPanel implements ActionListener {
 	
+	JPanel grid;
+	
 	public BingoUI() {
 		super();
 		
@@ -23,10 +25,9 @@ public class BingoUI extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	public void update(ArrayList<Word> wordList) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
