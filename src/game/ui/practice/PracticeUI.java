@@ -1,4 +1,4 @@
-package game.ui;
+package game.ui.practice;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
