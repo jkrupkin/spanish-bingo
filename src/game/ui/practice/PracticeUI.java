@@ -4,21 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import game.PlayMode;
+import game.backend.PlayAudio;
 import shared.Word;
 
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
-	PlayMode main;
-	JLabel wordLabel, cardImage;
-	JButton goLeft, goRight, shuffle, playAudio;
-	JPanel center;
+	private JLabel cardImage;
+	private JButton wordLabel, goLeft, goRight, shuffle;
+	private JPanel center;
+	
+	private ArrayList<Word> wordList;
+	private int index;
+	
 	
 	public PracticeUI() {
 		super();		
@@ -26,7 +30,7 @@ public class PracticeUI extends JPanel implements ActionListener {
 		
 		center = new JPanel();
 		
-		wordLabel = new JLabel("SETUP");
+		wordLabel = new JButton("SETUP");
 		center.add(wordLabel, BorderLayout.PAGE_START);
 		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		
@@ -51,16 +55,36 @@ public class PracticeUI extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 		if (source == goLeft) {
-			// TODO go back one card
+			if (index == 0)
+				index = wordList.size();
+			--index;
+			update();
 		} else if (source == goRight) {
-			// TODO go forwards one card
+			++index;
+			if (index == wordList.size())
+				index = 0;
+			update();
 		} else if (source == shuffle) {
-			// TODO shuffle the deck
-		}
+			Collections.shuffle(wordList);
+			index = 0;
+			update();
+		} else if (source == wordLabel || source == cardImage)
+			try {
+				PlayAudio.play(wordList.get(index));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	public void update(ArrayList<Word> wordList) {
-		// TODO Auto-generated method stub
-		
+		this.wordList = wordList;
+		index = 0;
+		update();
+	}
+	
+	private void update() {
+		Word cw = wordList.get(index);
+		wordLabel.setText(cw.getWord());
+		cardImage.prepareImage(cw.getImage(), this.getTopLevelAncestor());
 	}
 }
