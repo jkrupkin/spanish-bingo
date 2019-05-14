@@ -72,7 +72,8 @@ public class FileHandler {
 		if (!dir.isEmpty())
 			fDir = new File(dir);
 		else 
-			fDir = new File("");
+			fDir = new File(".");
+		System.out.println(fDir.getAbsolutePath());
 		FileFilter zipFilter = new FileFilter() {
 
 			@Override
@@ -86,8 +87,6 @@ public class FileHandler {
 		};
 		ArrayList<File> zips = new ArrayList<File>(Arrays.asList(fDir.listFiles(zipFilter)));
 		return zips;
-		
-		
 	}
 	
 	private static void toZip(String f, ZipOutputStream zos ) throws FileNotFoundException, IOException {

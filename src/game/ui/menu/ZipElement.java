@@ -28,7 +28,7 @@ public class ZipElement extends JPanel {
 		checkbox = new JCheckBox();
 		this.add(checkbox);
 		
-		title = new JLabel(zip.getName().substring(0, zip.getName().length()-4));
+		title = new JLabel("Name: [" + zip.getName().substring(0, zip.getName().length()-4) + "], Size: " + wordList.size());
 		this.add(title);
 	}
 }

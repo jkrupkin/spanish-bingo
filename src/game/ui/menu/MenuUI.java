@@ -21,6 +21,7 @@ public class MenuUI extends JPanel {
 	
 	private ScrollPane setSelector;
 	private JButton startPractice, startBingo;
+	private JPanel zipFilePanel;
 	private JCheckBox wrongAnswerCheckbox;
 	private JComboBox<String> gridSizeSelector;
 	private ArrayList<ZipElement> zipFileList;
@@ -32,16 +33,19 @@ public class MenuUI extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// group select area
-		setSelector = new ScrollPane();		
+		zipFilePanel = new JPanel();
 		zipFileList = new ArrayList<>();
 		ArrayList<File> fl = FileHandler.zipsInDir("");
 		for (File f : fl) try {
 			ZipElement z = new ZipElement(f);
 			zipFileList.add(z);
-			setSelector.add(z);
+			zipFilePanel.add(z);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		setSelector = new ScrollPane();
+		setSelector.add(zipFilePanel);
 		this.add(setSelector);
 		
 		// "start practice mode" button
