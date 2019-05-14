@@ -1,12 +1,15 @@
 package game.ui.menu;
 
+import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.PlayMode;
@@ -16,9 +19,10 @@ import shared.Word;
 @SuppressWarnings("serial")
 public class MenuUI extends JPanel {
 	
-	ScrollPane setSelector;
-	JButton startPractice, startBingo;
-	JComboBox<String> gridSizeSelector;
+	private ScrollPane setSelector;
+	private JButton startPractice, startBingo;
+	private JCheckBox wrongAnswerCheckbox;
+	private JComboBox<String> gridSizeSelector;
 	private ArrayList<ZipElement> zipFileList;
 	
 	public MenuUI(PlayMode p) {
@@ -45,16 +49,18 @@ public class MenuUI extends JPanel {
 		startPractice.addActionListener(p);
 		this.add(startPractice);
 		
-		
-		// bingo mode grid size
+		// bingo mode grid size selector
 		String[] str = {"4x4", "5x5", "6x6"};
 		gridSizeSelector = new JComboBox<>(str);
 		this.add(gridSizeSelector);
 		
-		// bingo mode incorrect answers
-		
-		
-		
+		// bingo mode mark incorrect answers
+		JPanel wrongAnswerPanel = new JPanel();
+		wrongAnswerPanel.setLayout(new FlowLayout());
+		wrongAnswerCheckbox = new JCheckBox();
+		wrongAnswerPanel.add(wrongAnswerCheckbox);
+		wrongAnswerPanel.add(new JLabel("Permanently Disable Incorrect Answers"));
+		this.add(wrongAnswerPanel);
 		
 		// "start bingo mode" button
 		startBingo = new JButton("START BINGO GAME");
@@ -72,12 +78,7 @@ public class MenuUI extends JPanel {
 	}
 	
 	public boolean getMarkWrongAnswer() {
-		//TODO get if wrong answers will be permanently marked incorrect
-		
-		
-		
-		
-		return true;
+		return wrongAnswerCheckbox.isSelected();
 	}
 	
 	public int getElementCount() {

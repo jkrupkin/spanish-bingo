@@ -74,8 +74,10 @@ public class EditorUI extends JFrame implements ActionListener {
 		} else if (b == saveSetButton) {
 			// construct a word ArrayList
 			ArrayList<Word> wordList = new ArrayList<>();
-			for (WordPanel wp : wordPanelList) {
+			for (WordPanel wp : wordPanelList) try {
 				wordList.add(wp.getWord());
+			} catch (Exception e) {
+				
 			}
 			
 			// get the name of the file to save to

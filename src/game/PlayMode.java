@@ -35,11 +35,10 @@ public class PlayMode implements WindowListener, ActionListener {
 	
 	// TODO: main entrance
 	public PlayMode() {
-		window = new JFrame();
+		window = new JFrame("Spanish Bingo Program");
 		menu = new MenuUI(this);
 		practice = new PracticeUI();
 		bingo = new BingoUI();
-		
 
 		setState(State.MENU);
 
