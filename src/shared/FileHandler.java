@@ -73,7 +73,6 @@ public class FileHandler {
 			fDir = new File(dir);
 		else 
 			fDir = new File(".");
-		System.out.println(fDir.getAbsolutePath());
 		FileFilter zipFilter = new FileFilter() {
 
 			@Override
@@ -114,7 +113,6 @@ public class FileHandler {
 			String wordStr = word.getString("word");
 			Word w = new Word(wordStr, zip);
 			words.add(w);
-			System.out.println(wordStr);
 		}
 		return words;
 	}
