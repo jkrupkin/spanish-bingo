@@ -75,9 +75,11 @@ public class EditorUI extends JFrame implements ActionListener {
 			// construct a word ArrayList
 			ArrayList<Word> wordList = new ArrayList<>();
 			for (WordPanel wp : wordPanelList) try {
-				wordList.add(wp.getWord());
+				Word w = wp.getWord();
+				wordList.add(w);
 			} catch (Exception e) {
-				
+				// TODO popup with "error detected on word <WORD>"
+				// 		prompt user if they want to abort or continue without it
 			}
 			
 			// get the name of the file to save to
@@ -100,6 +102,7 @@ public class EditorUI extends JFrame implements ActionListener {
 	}
 	
 	public void dropListWord(WordPanel wp) {
+		wordPanelList.remove(wp);
 		wordPanel.remove(wp);
 		wordPanel.revalidate();
 		
