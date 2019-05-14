@@ -5,9 +5,11 @@ import javax.sound.sampled.*;
 import shared.Word;
 public class PlayAudio {
 private static boolean isPlaying;
-	public static void play(Word w) throws LineUnavailableException, IOException {
+	public static void play(Word w) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 			System.out.println("Playing audio");
+			w.resetAudioStream();
 			Clip c = AudioSystem.getClip();
+			if(w.getAudio() != null) {
 			c.open(w.getAudio());
 			LineListener l = new LineListener() {
 
@@ -17,12 +19,7 @@ private static boolean isPlaying;
 						isPlaying = false;
 						System.out.println("Playback stopped");
 						c.close();
-						try {
-							w.resetAudioStream();
-						} catch (IOException |  UnsupportedAudioFileException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+		
 						
 
 					}
@@ -34,6 +31,8 @@ private static boolean isPlaying;
 			};
 			c.addLineListener(l);
 			c.start();
+			}
+
 		}
 	public static boolean isPlaying() {
 		return isPlaying;

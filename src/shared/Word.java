@@ -35,7 +35,6 @@ public class Word {
 		audio = audioFile;
 		imageData = ImageIO.read(pic);
 		isZip = false;
-		resetAudioStream();
 	}
 //Constructor for read-only usage from a zip
 	public Word(String word, String zipStr) throws IOException, UnsupportedAudioFileException {
@@ -46,7 +45,6 @@ public class Word {
 		InputStream is = extractFile(imagePath);
 		imageData = ImageIO.read(is);
 		isZip = true;
-		resetAudioStream();
 	}
 	private JSONObject getJSON() throws IOException {
 		JSONArray wordsJSON = FileHandler.readJSON(zip);
