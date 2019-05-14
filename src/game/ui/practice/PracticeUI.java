@@ -29,14 +29,12 @@ public class PracticeUI extends JPanel implements ActionListener {
 		this.setLayout(new BorderLayout());
 		
 		center = new JPanel();
-		
-		wordLabel = new JButton("SETUP");
-		center.add(wordLabel, BorderLayout.PAGE_START);
-		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		
-		cardImage = new JLabel();
-		// TODO center setup (display image
-		this.add(cardImage, BorderLayout.CENTER);
+			wordLabel = new JButton("SETUP");
+			wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+			center.add(wordLabel, BorderLayout.PAGE_START);
+			cardImage = new JLabel();
+			center.add(cardImage);
+		this.add(center, BorderLayout.CENTER);
 		
 		goLeft = new JButton("<-");
 		goLeft.addActionListener(this);
@@ -86,5 +84,6 @@ public class PracticeUI extends JPanel implements ActionListener {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
 		cardImage.prepareImage(cw.getImage(), this.getTopLevelAncestor());
+		this.revalidate();
 	}
 }
