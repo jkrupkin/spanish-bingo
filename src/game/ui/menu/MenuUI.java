@@ -54,7 +54,7 @@ public class MenuUI extends JPanel {
 		this.add(startPractice);
 		
 		// bingo mode grid size selector
-		String[] str = {"4x4", "5x5", "6x6"};
+		String[] str = {"4x4 Bingo Grid", "5x5 Bingo Grid", "6x6 Bingo Grid"};
 		gridSizeSelector = new JComboBox<>(str);
 		this.add(gridSizeSelector);
 		

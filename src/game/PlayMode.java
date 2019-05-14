@@ -74,6 +74,10 @@ public class PlayMode implements WindowListener, ActionListener {
 		Object src = e.getSource();
 		
 		ArrayList<Word> wordList = menu.genWordList();
+		if (wordList.size() == 0) {
+			JOptionPane.showConfirmDialog(window, "No words selected!", "WORD SET EMPTY", JOptionPane.DEFAULT_OPTION);
+			return;
+		}
 		if (src == menu.startPractice()) {
 			practice.update(wordList);
 			this.setState(State.PRACTICE);
@@ -81,6 +85,10 @@ public class PlayMode implements WindowListener, ActionListener {
 			Collections.shuffle(wordList);
 			
 			int n = menu.getElementCount();
+			if (wordList.size() < n) {
+				
+			}
+				
 			while (wordList.size() > n)
 				wordList.remove(n);
 			
