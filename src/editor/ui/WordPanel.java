@@ -18,8 +18,9 @@ import shared.Word;
 
 public class WordPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
+
+	JTextField wordName;
 	private EditorUI editor;
-	private JTextField wordName;
 	private JLabel imageFileName, soundFileName;
 	private JButton delete, setImage, setSound;
 	private JFileChooser fileChooser;

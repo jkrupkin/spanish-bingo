@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import shared.FileHandler;
@@ -21,12 +22,12 @@ import shared.Word;
 public class EditorUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640, HEIGHT = 480;
-	
-	ScrollPane wordScroller;
-	JPanel wordPanel, buttons;
-	JButton newWordButton, saveSetButton;
+
 	JFileChooser fileChooser;
-	ArrayList<WordPanel> wordPanelList;
+	private ScrollPane wordScroller;
+	private JPanel wordPanel, buttons;
+	private JButton newWordButton, saveSetButton;
+	private ArrayList<WordPanel> wordPanelList;
 
 	public EditorUI() {
 		// initial setup
@@ -74,13 +75,24 @@ public class EditorUI extends JFrame implements ActionListener {
 		} else if (b == saveSetButton) {
 			// construct a word ArrayList
 			ArrayList<Word> wordList = new ArrayList<>();
+			
 			for (WordPanel wp : wordPanelList) try {
 				Word w = wp.getWord();
 				wordList.add(w);
 			} catch (Exception e) {
-				// TODO popup with "error detected on word <WORD>"
-				// 		prompt user if they want to abort or continue without it
+				String[] opt = {"Continue", "Abort"};
+				int i = JOptionPane.showOptionDialog(this,
+						"Word " + wp.wordName.getText() + " was unable to save properly.  Complete the rest of the set without it?",
+						"WORD SAVING ERROR", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opt, opt[0]);
+				if (i == JOptionPane.NO_OPTION)
+					return;
 			}
+			
+			if (wordList.isEmpty()) {
+				JOptionPane.showConfirmDialog(this, "Word set is empty!  Cancelling save.", "WORD SET EMPTY", JOptionPane.DEFAULT_OPTION);
+				return;
+			}
+			
 			
 			// get the name of the file to save to
 			int retrival = fileChooser.showSaveDialog(this);			
@@ -102,9 +114,9 @@ public class EditorUI extends JFrame implements ActionListener {
 	}
 	
 	public void dropListWord(WordPanel wp) {
-		wordPanelList.remove(wp);
 		wordPanel.remove(wp);
-		wordPanel.revalidate();
+		wordScroller.revalidate();
+		wordPanelList.remove(wp);
 		
 		// TODO panel does not update properly when the last word is removed (erroneous behavior)
 	}
