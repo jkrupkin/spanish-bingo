@@ -115,7 +115,7 @@ public class EditorUI extends JFrame implements ActionListener {
 	
 	public void dropListWord(WordPanel wp) {
 		wordPanel.remove(wp);
-		wordScroller.revalidate();
+		this.revalidate();
 		wordPanelList.remove(wp);
 		
 		// TODO panel does not update properly when the last word is removed (erroneous behavior)
