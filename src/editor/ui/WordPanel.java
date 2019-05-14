@@ -69,13 +69,13 @@ public class WordPanel extends JPanel implements ActionListener {
 						imageFileName.setText(imageFile.getName());
 					else
 						JOptionPane.showMessageDialog(this,
-								"Illegal file type chosen!  Legal image types: .jpg, .png");
+								"Illegal file type chosen!  Legal image types: .jpg, .png, .bmp, .gif");
 				} else if (source == setSound) {
 					if (isSupportedSoundFile(newFile))
 						soundFileName.setText(soundFile.getName());
 					else
 						JOptionPane.showMessageDialog(this,
-								"Illegal file type chosen!  Legal audio types: .wav");
+								"Illegal file type chosen!  Legal audio types: .wav, .aiff, .au");
 				}
 				
 				this.revalidate();
@@ -86,26 +86,27 @@ public class WordPanel extends JPanel implements ActionListener {
 	private boolean isSupportedImageFile(File newFile) {
 		String fileName = newFile.getName();
 		String fileType = fileName.substring(fileName.lastIndexOf('.'));
-		switch (fileType) {
-		case ".png":
-		case ".jpg":
-			return true;
 		
-		default:
-			return false;
-		}
+		String[] legalTypes = {".bmp", ".gif", ".jpg", ".png"};
+		
+		for (String s : legalTypes)
+			if (fileType.equalsIgnoreCase(s))
+				return true;
+		
+		return false;
 	}
 	
 	private boolean isSupportedSoundFile(File newFile) {
 		String fileName = newFile.getName();
 		String fileType = fileName.substring(fileName.lastIndexOf('.'));
-		switch (fileType) {
-		case ".wav":
-			return true;
 		
-		default:
-			return false;
-		}
+		String[] legalTypes = {".aiff", ".au", ".wav"};
+		
+		for (String s : legalTypes)
+			if (fileType.equalsIgnoreCase(s))
+				return true;
+		
+		return false;
 	}
 	
 	public Word getWord() throws IOException, UnsupportedAudioFileException {
