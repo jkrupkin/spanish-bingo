@@ -103,11 +103,11 @@ public class EditorUI extends JFrame implements ActionListener {
 					s = s + ".zip";
 				FileHandler.writeVocab(wordList, s);
 				
-				// TODO remove all words from wordPanel and wordPanelList
-				
+				// remove all words from wordPanel and wordPanelList
+				wordPanel.removeAll();
+				wordPanelList = new ArrayList<>();
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
