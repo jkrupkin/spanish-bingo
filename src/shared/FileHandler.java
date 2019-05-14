@@ -72,7 +72,7 @@ public class FileHandler {
 		if (!dir.isEmpty())
 			fDir = new File(dir);
 		else 
-			fDir = new File(".");
+			fDir = new File("");
 		FileFilter zipFilter = new FileFilter() {
 
 			@Override
