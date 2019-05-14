@@ -58,7 +58,7 @@ public class Word {
 				wordJSON = currWord;
 				break;
 			}
-			}
+		}
 		return wordJSON;
 	
 	}
