@@ -89,7 +89,7 @@ public class PracticeUI extends JPanel implements ActionListener {
 		wordLabel.setText(cw.getWord());
 		Image img = cw.getImage();
 		int w, h;
-		ImageIcon i = new ImageIcon(cw.getImage());
+		ImageIcon i = new ImageIcon(img);
 		imageLabel.setIcon(i);
 		this.revalidate();
 	}
