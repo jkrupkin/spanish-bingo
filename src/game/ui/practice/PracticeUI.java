@@ -1,11 +1,13 @@
 package game.ui.practice;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +21,7 @@ public class PracticeUI extends JPanel implements ActionListener {
 	private JLabel cardImage;
 	private JButton wordLabel, goLeft, goRight, shuffle;
 	private JPanel center;
+	private JLabel imageLabel;
 	
 	private ArrayList<Word> wordList;
 	private int index;
@@ -31,9 +34,10 @@ public class PracticeUI extends JPanel implements ActionListener {
 		center = new JPanel();
 			wordLabel = new JButton("SETUP");
 			wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+			wordLabel.addActionListener(this);
 			center.add(wordLabel, BorderLayout.PAGE_START);
-			cardImage = new JLabel();
-			center.add(cardImage);
+			imageLabel = new JLabel();
+			center.add(imageLabel);
 		this.add(center, BorderLayout.CENTER);
 		
 		goLeft = new JButton("<-");
@@ -83,7 +87,10 @@ public class PracticeUI extends JPanel implements ActionListener {
 	private void update() {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
-		cardImage.prepareImage(cw.getImage(), this.getTopLevelAncestor());
+		Image img = cw.getImage();
+		int w, h;
+		ImageIcon i = new ImageIcon(cw.getImage());
+		imageLabel.setIcon(i);
 		this.revalidate();
 	}
 }
