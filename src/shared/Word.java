@@ -27,9 +27,12 @@ public class Word {
 	
 //Constructor for reading and writing
 	public Word(String word, String picturePath, String audioPath) throws IOException, UnsupportedAudioFileException {
+		this(word, new File(picturePath), new File(audioPath));
+	}
+	public Word(String word, File pictureFile, File audioFile) throws IOException, UnsupportedAudioFileException {
 		this.word = word;
-		pic = new File(picturePath);
-		audio = new File(audioPath);
+		pic = pictureFile;
+		audio = audioFile;
 		imageData = ImageIO.read(pic);
 		isZip = false;
 		resetAudioStream();
@@ -40,7 +43,6 @@ public class Word {
 		zip = new ZipFile(zipStr);
 		JSONObject wordJSON = getJSON();
 		String imagePath = wordJSON.getString("image");
-		String audioPath = wordJSON.getString("audio");
 		InputStream is = extractFile(imagePath);
 		imageData = ImageIO.read(is);
 		isZip = true;
