@@ -66,15 +66,17 @@ public class WordPanel extends JPanel implements ActionListener {
 				File newFile = fileChooser.getSelectedFile();
 				
 				if (source == setImage) { 
-					if (isSupportedImageFile(newFile))
+					if (isSupportedImageFile(newFile)) {
+						imageFile = newFile;
 						imageFileName.setText(imageFile.getName());
-					else
+					} else
 						JOptionPane.showMessageDialog(this,
 								"Illegal file type chosen!  Legal image types: .jpg, .png, .bmp, .gif");
 				} else if (source == setSound) {
-					if (isSupportedSoundFile(newFile))
+					if (isSupportedSoundFile(newFile)) {
+						soundFile = newFile;
 						soundFileName.setText(soundFile.getName());
-					else
+					} else
 						JOptionPane.showMessageDialog(this,
 								"Illegal file type chosen!  Legal audio types: .wav, .aiff, .au");
 				}
