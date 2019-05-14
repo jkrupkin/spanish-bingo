@@ -4,10 +4,13 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,12 +18,12 @@ import shared.Word;
 
 public class WordPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	EditorUI editor;
-	JTextField wordName;
-	JLabel imageFileName, soundFileName;
-	JButton delete, setImage, setSound;
-	JFileChooser fileChooser;
-	File imageFile, soundFile;
+	private EditorUI editor;
+	private JTextField wordName;
+	private JLabel imageFileName, soundFileName;
+	private JButton delete, setImage, setSound;
+	private JFileChooser fileChooser;
+	private File imageFile, soundFile;
 
 	WordPanel(EditorUI e) {
 		super();
@@ -59,19 +62,53 @@ public class WordPanel extends JPanel implements ActionListener {
 		} else { // select file for word
 			int result = fileChooser.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) {
-				if (source == setImage) {
-					imageFile = fileChooser.getSelectedFile();
-					imageFileName.setText(imageFile.getName());
+				File newFile = fileChooser.getSelectedFile();
+				
+				if (source == setImage) { 
+					if (isSupportedImageFile(newFile))
+						imageFileName.setText(imageFile.getName());
+					else
+						JOptionPane.showMessageDialog(this,
+								"Illegal file type chosen!  Legal image types: .jpg, .png");
 				} else if (source == setSound) {
-					soundFile = fileChooser.getSelectedFile();
-					soundFileName.setText(soundFile.getName());
+					if (isSupportedSoundFile(newFile))
+						soundFileName.setText(soundFile.getName());
+					else
+						JOptionPane.showMessageDialog(this,
+								"Illegal file type chosen!  Legal audio types: .wav");
 				}
+				
 				this.revalidate();
 			}
 		}
 	}
 	
-	public Word getWord() {
-		return null;
+	private boolean isSupportedImageFile(File newFile) {
+		String fileName = newFile.getName();
+		String fileType = fileName.substring(fileName.lastIndexOf('.'));
+		switch (fileType) {
+		case ".png":
+		case ".jpg":
+			return true;
+		
+		default:
+			return false;
+		}
+	}
+	
+	private boolean isSupportedSoundFile(File newFile) {
+		String fileName = newFile.getName();
+		String fileType = fileName.substring(fileName.lastIndexOf('.'));
+		switch (fileType) {
+		case ".wav":
+			return true;
+		
+		default:
+			return false;
+		}
+	}
+	
+	public Word getWord() throws IOException, UnsupportedAudioFileException {
+		return new Word(wordName.getText(), imageFile, soundFile);
 	}
 }
