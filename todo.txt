@@ -1,2 +1,0 @@
-[ ] Put together UI for Editor Program
-[ ] Read
