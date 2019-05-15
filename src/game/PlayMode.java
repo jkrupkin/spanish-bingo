@@ -39,7 +39,7 @@ public class PlayMode implements WindowListener, ActionListener {
 		practice = new PracticeUI();
 		bingo = new BingoUI();
 		
-		window.setSize(800, 800);
+		window.setSize(500, 500);
 		setState(State.MENU);
 
 		window.addWindowListener(this);
