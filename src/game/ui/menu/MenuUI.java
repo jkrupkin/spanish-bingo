@@ -1,6 +1,7 @@
 package game.ui.menu;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.ScrollPane;
 import java.io.File;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class MenuUI extends JPanel {
 		
 		// group select area
 		zipFilePanel = new JPanel();
+		zipFilePanel.setLayout(new GridLayout());
 		zipFileList = new ArrayList<>();
 		ArrayList<File> fl = FileHandler.zipsInDir("");
 		for (File f : fl) try {
