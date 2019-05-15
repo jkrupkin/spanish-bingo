@@ -113,8 +113,6 @@ public class Word {
 		if (targetWidth == scaleWidth || targetHeight == scaleHeight)
 			return scaleImage;
 		
-		
-		
 		if (targetWidth/(double)actualWidth < targetHeight/(double)actualHeight) 
 			scaleImage = imageData.getScaledInstance(targetWidth, -1, Image.SCALE_SMOOTH);
 		else
