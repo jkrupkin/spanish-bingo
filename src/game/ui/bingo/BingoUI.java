@@ -1,5 +1,7 @@
 package game.ui.bingo;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,7 +18,14 @@ public class BingoUI extends JPanel implements ActionListener {
 	public BingoUI() {
 		super();
 		
+		this.setLayout(new BorderLayout());
 		
+		grid = new JPanel();
+		grid.setLayout(new GridLayout());
+		// grid panel exists
+		// however, buttons are only created/added once the game knows how many it will need
+		// so that takes place during update(), below
+		this.add(grid, BorderLayout.CENTER);
 	}
 	
 	
