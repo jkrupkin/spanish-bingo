@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -38,8 +40,8 @@ public class PlayMode implements WindowListener, ActionListener {
 		menu = new MenuUI(this);
 		practice = new PracticeUI();
 		bingo = new BingoUI();
-		
-		window.setSize(500, 500);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		window.setSize(screenSize.height - 100, screenSize.height - 100);
 		setState(State.MENU);
 
 		window.addWindowListener(this);
