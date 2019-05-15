@@ -70,9 +70,6 @@ public class PlayMode implements WindowListener, ActionListener {
 						"WORD SET TOO SMALL", JOptionPane.DEFAULT_OPTION);
 				return;
 			}
-				
-			while (wordList.size() > n)
-				wordList.remove(n);
 			
 			this.setState(State.BINGO);
 			bingo.update(wordList, m, menu.getMarkWrongAnswer());
