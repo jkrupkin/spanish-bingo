@@ -21,9 +21,10 @@ public class Word {
 	private String word;
 	private File audio, pic; //These are only used when writing to the zip
 	private ZipFile zip;
-	private Image imageData;
+	private Image imageData, scaleImage;
 	private AudioInputStream audioData;
 	private boolean isZip;
+	private int scaleWidth, scaleHeight;
 	
 //Constructor for reading and writing
 	public Word(String word, String picturePath, String audioPath) throws IOException, UnsupportedAudioFileException {
@@ -34,6 +35,7 @@ public class Word {
 		pic = pictureFile;
 		audio = audioFile;
 		imageData = ImageIO.read(pic);
+		this.scaleImage();
 		isZip = false;
 	}
 //Constructor for read-only usage from a zip
@@ -44,7 +46,13 @@ public class Word {
 		String imagePath = wordJSON.getString("image");
 		InputStream is = extractFile(imagePath);
 		imageData = ImageIO.read(is);
+		this.scaleImage();
 		isZip = true;
+	}
+	private void scaleImage() {
+		scaleWidth = imageData.getWidth(null);
+		scaleHeight = imageData.getWidth(null);
+		scaleImage = imageData;
 	}
 	private JSONObject getJSON() throws IOException {
 		JSONArray wordsJSON = FileHandler.readJSON(zip);
@@ -97,6 +105,30 @@ public class Word {
 		
 		return is;
 		
+	}
+	
+	public Image getScaledImage(int tw, int th) {
+		int aw, ah;
+		aw = imageData.getWidth(null);
+		ah = imageData.getHeight(null);
+		
+		if (aw <= tw && ah <= th)
+			return imageData;
+		if (tw == scaleWidth && th == scaleHeight)
+			return scaleImage;
+		System.out.println("WORD: " + tw + ", " + th);
+		System.out.println(scaleImage.getWidth(null)+", "+scaleImage.getHeight(null));
+		System.out.println(scaleWidth+", "+scaleHeight);
+		
+		if ( (tw/(double)aw) > (th/(double)ah) ) 
+			scaleImage = imageData.getScaledInstance(tw, -1, Image.SCALE_SMOOTH);
+		else
+			scaleImage = imageData.getScaledInstance(-1, th, Image.SCALE_SMOOTH);
+		
+		scaleWidth = tw;
+		scaleHeight = th;
+		
+		return scaleImage;
 	}
 	
 	
