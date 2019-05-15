@@ -1,7 +1,6 @@
 package game.ui.practice;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -85,20 +84,8 @@ public class PracticeUI extends JPanel implements ActionListener {
 	private void update() {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
-		Image img = cw.getImage();
-		int w, h, tw, th;
-		w = img.getWidth(this);
-		h = img.getHeight(this);
-		// TODO set target width and height properly
-		tw = 532; th = 381;
-		
-		if (w > tw || h > th) {
-			if ( ((double)w/tw) > ((double)h/th)) 
-				img = img.getScaledInstance(tw, -1, Image.SCALE_SMOOTH);
-			else
-				img = img.getScaledInstance(-1, th, Image.SCALE_SMOOTH);
-		}
-		imageLabel.setIcon(new ImageIcon(img));
+		int tw = imageLabel.getWidth(), th = imageLabel.getHeight();
+		imageLabel.setIcon(new ImageIcon(cw.getScaledImage(tw, th)));
 		this.revalidate();
 	}
 }
