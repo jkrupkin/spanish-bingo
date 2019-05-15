@@ -38,7 +38,8 @@ public class PlayMode implements WindowListener, ActionListener {
 		menu = new MenuUI(this);
 		practice = new PracticeUI();
 		bingo = new BingoUI();
-
+		
+		window.setSize(800, 800);
 		setState(State.MENU);
 
 		window.addWindowListener(this);
@@ -79,20 +80,23 @@ public class PlayMode implements WindowListener, ActionListener {
 	private void setState(State newState) {
 		switch (newState) {
 		case BINGO:
-			window.setSize(640, 640);
+			//window.setSize(640, 640);
 			window.setContentPane(bingo);
+			window.setResizable(false);
 			state = State.BINGO;
 			break;
 			
 		case PRACTICE:
-			window.setSize(640, 480);
+			//window.setSize(640, 480);
 			window.setContentPane(practice);
+			window.setResizable(false);
 			state = State.PRACTICE;
 			break;
 			
 		case MENU:
-			window.setSize(640, 480);
+			//window.setSize(640, 480);
 			window.setContentPane(menu);
+			window.setResizable(true);
 			state = State.MENU;
 			break;
 		}

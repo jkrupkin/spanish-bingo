@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +14,6 @@ import shared.Word;
 
 @SuppressWarnings("serial")
 public class BingoUI extends JPanel implements ActionListener {
-	
 	JPanel grid;
 	JButton[][] boardButtons;
 	public BingoUI() {
@@ -42,31 +40,21 @@ public class BingoUI extends JPanel implements ActionListener {
 		grid.removeAll();
 		grid.setLayout(new GridLayout(size, size));
 		boardButtons = new JButton[size][size];
-		for (int i = 0; i < boardButtons.length; ++i)
+		for (int i = 0; i < boardButtons.length; ++i) {
 			for (int j = 0; j < boardButtons[i].length; ++j) {
-				Word w = wordList.get(i * boardButtons.length + j);
-				JButton b = new JButton(new ImageIcon(w.getImage()));
+				JButton b = new JButton();
 				boardButtons[i][j] = b;
-				b.setActionCommand(w.getWord());
 				b.addActionListener(this);
 				grid.add(b);
 			}
+		}
+		for (int i = 0; i < boardButtons.length; ++i) {
+			for (int j = 0; j < boardButtons[i].length; ++j) {
+				Word w = wordList.get(i * boardButtons.length + j);
+				JButton b = boardButtons[i][j];
+				b.setActionCommand(w.getWord());
+				b.setIcon(new ImageIcon(w.getScaledImage(b.getWidth(), b.getHeight())));
+			}
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
