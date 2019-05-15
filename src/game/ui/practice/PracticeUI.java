@@ -18,12 +18,8 @@ import shared.Word;
 
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
-	private static final int tImgSize = 250;
-	
-	private JLabel cardImage;
-	private JButton wordLabel, goLeft, goRight, shuffle;
-	private JPanel center;
 	private JLabel imageLabel;
+	private JButton wordLabel, goLeft, goRight, shuffle;
 	
 	private ArrayList<Word> wordList;
 	private int index;
@@ -33,14 +29,14 @@ public class PracticeUI extends JPanel implements ActionListener {
 		super();		
 		this.setLayout(new BorderLayout());
 		
-		center = new JPanel();
-			wordLabel = new JButton("SETUP");
-			wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-			wordLabel.addActionListener(this);
-			center.add(wordLabel, BorderLayout.PAGE_START);
-			imageLabel = new JLabel();
-			center.add(imageLabel);
-		this.add(center, BorderLayout.CENTER);
+		wordLabel = new JButton("SETUP");
+		wordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		wordLabel.addActionListener(this);
+		this.add(wordLabel, BorderLayout.PAGE_START);
+		
+		imageLabel = new JLabel();
+		imageLabel.setHorizontalAlignment(JLabel.CENTER);
+		this.add(imageLabel, BorderLayout.CENTER);
 		
 		goLeft = new JButton("<-");
 		goLeft.addActionListener(this);
@@ -72,7 +68,7 @@ public class PracticeUI extends JPanel implements ActionListener {
 			Collections.shuffle(wordList);
 			index = 0;
 			update();
-		} else if (source == wordLabel || source == cardImage)
+		} else if (source == wordLabel)
 			try {
 				PlayAudio.play(wordList.get(index));
 			} catch (Exception e) {
@@ -90,18 +86,21 @@ public class PracticeUI extends JPanel implements ActionListener {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
 		Image img = cw.getImage();
-		// TODO re-scale the image to fit onscreen easily
-		int w, h;
+		imageLabel.setIcon(new ImageIcon(img));
+		imageLabel.revalidate();
+		int w, h, tw, th;
 		w = img.getWidth(this);
 		h = img.getHeight(this);
-		if (w > tImgSize || h > tImgSize) {
-			if (w>h) 
-				img = img.getScaledInstance(tImgSize, -1, Image.SCALE_SMOOTH);
+		// TODO set target width and height properly
+		tw = 250; th = 250;
+		
+		if (w > tw || h > th) {
+			if ( ((double)w/tw) > ((double)h/th)) 
+				img = img.getScaledInstance(tw, -1, Image.SCALE_SMOOTH);
 			else
-				img = img.getScaledInstance(-1, tImgSize, Image.SCALE_SMOOTH);
+				img = img.getScaledInstance(-1, th, Image.SCALE_SMOOTH);
 		}
-		ImageIcon i = new ImageIcon(img);
-		imageLabel.setIcon(i);
+		imageLabel.setIcon(new ImageIcon(img));
 		this.revalidate();
 	}
 }
