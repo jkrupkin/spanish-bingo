@@ -86,13 +86,11 @@ public class PracticeUI extends JPanel implements ActionListener {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
 		Image img = cw.getImage();
-		imageLabel.setIcon(new ImageIcon(img));
-		imageLabel.revalidate();
 		int w, h, tw, th;
 		w = img.getWidth(this);
 		h = img.getHeight(this);
 		// TODO set target width and height properly
-		tw = 250; th = 250;
+		tw = 532; th = 381;
 		
 		if (w > tw || h > th) {
 			if ( ((double)w/tw) > ((double)h/th)) 
