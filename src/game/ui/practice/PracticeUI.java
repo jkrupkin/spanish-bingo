@@ -18,6 +18,8 @@ import shared.Word;
 
 @SuppressWarnings("serial")
 public class PracticeUI extends JPanel implements ActionListener {
+	private static final int tImgSize = 250;
+	
 	private JLabel cardImage;
 	private JButton wordLabel, goLeft, goRight, shuffle;
 	private JPanel center;
@@ -88,7 +90,16 @@ public class PracticeUI extends JPanel implements ActionListener {
 		Word cw = wordList.get(index);
 		wordLabel.setText(cw.getWord());
 		Image img = cw.getImage();
-		//int w, h;
+		// TODO re-scale the image to fit onscreen easily
+		int w, h;
+		w = img.getWidth(this);
+		h = img.getHeight(this);
+		if (w > tImgSize || h > tImgSize) {
+			if (w>h) 
+				img = img.getScaledInstance(tImgSize, -1, Image.SCALE_SMOOTH);
+			else
+				img = img.getScaledInstance(-1, tImgSize, Image.SCALE_SMOOTH);
+		}
 		ImageIcon i = new ImageIcon(img);
 		imageLabel.setIcon(i);
 		this.revalidate();
