@@ -96,13 +96,19 @@ public class BingoUI extends JPanel implements ActionListener {
 					// you won at bingo!
 					replayAudio.setText("You won!  Congradulations!");
 					// TODO disable all buttons
+					replayAudio.setEnabled(false);
+					for (int m = 0; m < boardButtons.length; ++m) {
+						for (int n = 0; n < boardButtons[m].length; ++n) {
+							boardButtons[m][n].setEnabled(false);
+						}
+					}
 					return;
 				}
 				
 				// fix incorrect answers (if option is chosen)
 				if (!markWrongAnswers) {
 					for (int m = 0; m < boardButtons.length; ++m) {
-						for (int n = 0; n < boardButtons[n].length; ++n) {
+						for (int n = 0; n < boardButtons[m].length; ++n) {
 							if (!wordGuessed[m][n]) {
 								boardButtons[m][n].setEnabled(true);
 							}
@@ -135,22 +141,9 @@ public class BingoUI extends JPanel implements ActionListener {
 	}
 	
 	private boolean checkBingo() {
-		// check diagonals (if applicable)
-		if (wordGuessed.length == 5) {
-			if ((wordGuessed[0][0] &&
-					wordGuessed[1][1] &&
-						wordGuessed[2][2] &&
-							wordGuessed[3][3] &&
-								wordGuessed[4][4]) ||
-				(wordGuessed[4][0] &&
-					wordGuessed[3][1] &&
-						wordGuessed[2][2] &&
-							wordGuessed[1][3] &&
-								wordGuessed[0][4]))
-				return true;
-		}
-		
-		// check horizontals and verticals
+		boolean d1, d2;
+		d1 = true;
+		d2 = true;
 		for (int i = 0; i < wordGuessed.length; ++i) {
 			boolean v, h;
 			v = true;
@@ -161,9 +154,11 @@ public class BingoUI extends JPanel implements ActionListener {
 			}
 			if (v || h)
 				return true;
+			d1 &= wordGuessed[i][i];
+			d2 &= wordGuessed[i][wordGuessed.length-i-1];
 		}
-		
-		// otherwise, return false
+		if (d1 || d2)
+			return true;
 		return false;
 	}
 }
