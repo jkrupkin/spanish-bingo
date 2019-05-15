@@ -50,6 +50,8 @@ public class FileHandler {
 			
 			toZip(newImagePath.toString(), zos);
 			toZip(newAudioPath.toString(), zos);
+			Files.delete(newImagePath);
+			Files.delete(newAudioPath);
 			JSONObject word = new JSONObject();
 			word.put("word", w.getWord());
 			word.put("image", newImagePath.toString());
@@ -63,8 +65,10 @@ public class FileHandler {
 		toZip(wordsFile.getPath(), zos);
 		zos.close();
 		fos.close();
+		new File("images/").delete();
+		new File("audio/").delete();
+		new File("words.json").delete();
 	}
-	
 	// Returns a list of .zip files from the specified directory (relative or absolute)
 	//If given an empty string it will assume the current working directory
 	public static ArrayList<File> zipsInDir(String dir){
