@@ -112,7 +112,7 @@ public class Word {
 		aw = imageData.getWidth(null);
 		ah = imageData.getHeight(null);
 		
-		if (aw < tw && ah < th)
+		if (aw <= tw && ah <= th)
 			return imageData;
 		if (tw == scaleWidth && th == scaleHeight)
 			return scaleImage;
