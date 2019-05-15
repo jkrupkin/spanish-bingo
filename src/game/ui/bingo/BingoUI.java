@@ -48,12 +48,21 @@ public class BingoUI extends JPanel implements ActionListener {
 				grid.add(b);
 			}
 		}
+		
+		grid.revalidate();
+		
 		for (int i = 0; i < boardButtons.length; ++i) {
 			for (int j = 0; j < boardButtons[i].length; ++j) {
 				Word w = wordList.get(i * boardButtons.length + j);
 				JButton b = boardButtons[i][j];
 				b.setActionCommand(w.getWord());
-				b.setIcon(new ImageIcon(w.getScaledImage(b.getWidth(), b.getHeight())));
+				
+				int tw, th;
+				tw = b.getWidth();
+				th = b.getHeight();
+				
+				System.out.println(tw+", "+th); tw = th = 200; //debug
+				b.setIcon(new ImageIcon(w.getScaledImage(tw, th)));
 			}
 		}
 	}
