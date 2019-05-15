@@ -45,6 +45,39 @@ public class PlayMode implements WindowListener, ActionListener {
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.setVisible(true);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		ArrayList<Word> wordList = menu.genWordList();
+		if (wordList.size() == 0) {
+			JOptionPane.showConfirmDialog(window, "No words selected!", "WORD SET EMPTY", JOptionPane.DEFAULT_OPTION);
+			return;
+		}
+		if (src == menu.startPractice()) {
+			practice.update(wordList);
+			this.setState(State.PRACTICE);
+		} else if (src == menu.startBingo()) {
+			Collections.shuffle(wordList);
+			
+			int m = menu.getElementCount();
+			int n = m*m;
+			if (wordList.size() < n) {
+				JOptionPane.showConfirmDialog( window,
+						"Not enough words have been chosen for the current grid size ("+m+"x"+m+")! " + 
+						" Pick more word groups, or make the bingo board smaller.",
+						"WORD SET TOO SMALL", JOptionPane.DEFAULT_OPTION);
+				return;
+			}
+				
+			while (wordList.size() > n)
+				wordList.remove(n);
+			
+			bingo.update(wordList, menu.getMarkWrongAnswer());
+			this.setState(State.BINGO);
+		}
+	}
 	
 	private void setState(State newState) {
 		switch (newState) {
@@ -67,35 +100,6 @@ public class PlayMode implements WindowListener, ActionListener {
 			break;
 		}
 		window.revalidate();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
-		
-		ArrayList<Word> wordList = menu.genWordList();
-		if (wordList.size() == 0) {
-			JOptionPane.showConfirmDialog(window, "No words selected!", "WORD SET EMPTY", JOptionPane.DEFAULT_OPTION);
-			return;
-		}
-		if (src == menu.startPractice()) {
-			practice.update(wordList);
-			this.setState(State.PRACTICE);
-		} else if (src == menu.startBingo()) {
-			Collections.shuffle(wordList);
-			
-			int m = menu.getElementCount();
-			int n = m*m;
-			if (wordList.size() < n) {
-				
-			}
-				
-			while (wordList.size() > n)
-				wordList.remove(n);
-			
-			bingo.update(wordList, menu.getMarkWrongAnswer());
-			this.setState(State.BINGO);
-		}
 	}
 
 	@Override
