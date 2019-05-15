@@ -133,9 +133,7 @@ public class MenuUI extends JPanel {
 	}
 	
 	public int getElementCount() {
-		int x = gridSizeSelector.getSelectedIndex();
-		x += 4;
-		return x * x;
+		return gridSizeSelector.getSelectedIndex() + 4;
 	}
 	
 	public JButton startPractice() {
