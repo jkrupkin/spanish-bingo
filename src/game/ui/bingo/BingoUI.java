@@ -16,6 +16,7 @@ import shared.Word;
 public class BingoUI extends JPanel implements ActionListener {
 	JPanel grid;
 	JButton[][] boardButtons;
+	JButton replayAudio;
 	public BingoUI() {
 		super();
 		
@@ -27,13 +28,19 @@ public class BingoUI extends JPanel implements ActionListener {
 		// so that takes place during update(), below
 		this.add(grid, BorderLayout.CENTER);
 		
-		// TODO "replay audio" button
+		// "replay audio" button
+		replayAudio = new JButton();
+		replayAudio.addActionListener(this);
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
+		if (event.getSource() == replayAudio) {
+			// TODO replay audio
+		} else {
+			// TODO update backend with selected word
+		}
 	}
 	
 	public void update(ArrayList<Word> wordList, int size, boolean markWrongAnswers) {
