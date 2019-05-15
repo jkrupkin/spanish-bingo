@@ -17,6 +17,7 @@ public class BingoUI extends JPanel implements ActionListener {
 	JPanel grid;
 	JButton[][] boardButtons;
 	JButton replayAudio;
+	ArrayList<Word> wordList;
 	public BingoUI() {
 		super();
 		
@@ -27,7 +28,6 @@ public class BingoUI extends JPanel implements ActionListener {
 		// however, buttons are only created/added once the game knows how many it will need
 		// so that takes place during update(), below
 		this.add(grid, BorderLayout.CENTER);
-		
 		// "replay audio" button
 		replayAudio = new JButton("Hear Word Again");
 		replayAudio.addActionListener(this);
@@ -38,13 +38,15 @@ public class BingoUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == replayAudio) {
-			// TODO replay audio
+			
 		} else {
 			// TODO update backend with selected word
 		}
 	}
-	
-	public void update(ArrayList<Word> wordList, int size, boolean markWrongAnswers) {
+	public void setArrayList(ArrayList<Word> wordList) {
+		this.wordList = wordList;
+	}
+	public void update( int size, boolean markWrongAnswers) {
 		grid.removeAll();
 		grid.setLayout(new GridLayout(size, size));
 		boardButtons = new JButton[size][size];

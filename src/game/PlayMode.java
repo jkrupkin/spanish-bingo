@@ -75,7 +75,8 @@ public class PlayMode implements WindowListener, ActionListener {
 			}
 			
 			this.setState(State.BINGO);
-			bingo.update(wordList, m, menu.getMarkWrongAnswer());
+			bingo.setArrayList(wordList);
+			bingo.update(m, menu.getMarkWrongAnswer());
 		}
 	}
 	
