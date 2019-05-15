@@ -24,7 +24,6 @@ public class Word {
 	private Image imageData, scaleImage;
 	private AudioInputStream audioData;
 	private boolean isZip;
-	private int scaleWidth, scaleHeight;
 	
 //Constructor for reading and writing
 	public Word(String word, String picturePath, String audioPath) throws IOException, UnsupportedAudioFileException {
@@ -35,7 +34,7 @@ public class Word {
 		pic = pictureFile;
 		audio = audioFile;
 		imageData = ImageIO.read(pic);
-		this.scaleImage();
+		scaleImage = imageData;
 		isZip = false;
 	}
 //Constructor for read-only usage from a zip
@@ -46,13 +45,8 @@ public class Word {
 		String imagePath = wordJSON.getString("image");
 		InputStream is = extractFile(imagePath);
 		imageData = ImageIO.read(is);
-		this.scaleImage();
-		isZip = true;
-	}
-	private void scaleImage() {
-		scaleWidth = imageData.getWidth(null);
-		scaleHeight = imageData.getWidth(null);
 		scaleImage = imageData;
+		isZip = true;
 	}
 	private JSONObject getJSON() throws IOException {
 		JSONArray wordsJSON = FileHandler.readJSON(zip);
@@ -107,26 +101,24 @@ public class Word {
 		
 	}
 	
-	public Image getScaledImage(int tw, int th) {
-		int aw, ah;
-		aw = imageData.getWidth(null);
-		ah = imageData.getHeight(null);
+	public Image getScaledImage(int targetWidth, int targetHeight) {
+		int actualWidth, actualHeight, scaleWidth, scaleHeight;
+		actualWidth = imageData.getWidth(null);
+		actualHeight = imageData.getHeight(null);
+		scaleWidth = scaleImage.getWidth(null);
+		scaleHeight = scaleImage.getHeight(null);
 		
-		if (aw <= tw && ah <= th)
+		if (actualWidth <= targetWidth && actualHeight <= targetHeight)
 			return imageData;
-		if (tw == scaleWidth && th == scaleHeight)
+		if (targetWidth == scaleWidth || targetHeight == scaleHeight)
 			return scaleImage;
-		System.out.println("WORD: " + tw + ", " + th);
-		System.out.println(scaleImage.getWidth(null)+", "+scaleImage.getHeight(null));
-		System.out.println(scaleWidth+", "+scaleHeight);
 		
-		if ( (tw/(double)aw) > (th/(double)ah) ) 
-			scaleImage = imageData.getScaledInstance(tw, -1, Image.SCALE_SMOOTH);
+		
+		
+		if (targetWidth/(double)actualWidth < targetHeight/(double)actualHeight) 
+			scaleImage = imageData.getScaledInstance(targetWidth, -1, Image.SCALE_SMOOTH);
 		else
-			scaleImage = imageData.getScaledInstance(-1, th, Image.SCALE_SMOOTH);
-		
-		scaleWidth = tw;
-		scaleHeight = th;
+			scaleImage = imageData.getScaledInstance(-1, targetHeight, Image.SCALE_SMOOTH);
 		
 		return scaleImage;
 	}
