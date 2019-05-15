@@ -72,6 +72,53 @@ public class MenuUI extends JPanel {
 		this.add(startBingo);
 	}
 	
+	// Attempt to rework the selection UI to be more visually pleasing
+	// Currently scrapped
+	/*public MenuUI(PlayMode p) {
+		this.setLayout(new BorderLayout());
+			JPanel inner = new JPanel();
+				ScrollPane setSelector = new ScrollPane();
+					JPanel zipFilePanel = new JPanel();
+					zipFilePanel.setLayout(new BoxLayout(zipFilePanel, BoxLayout.PAGE_AXIS));
+					zipFileList = new ArrayList<>();
+					ArrayList<File> fl = FileHandler.zipsInDir("");
+					for (File f : fl) try {
+						ZipElement z = new ZipElement(f);
+						zipFileList.add(z);
+						zipFilePanel.add(z);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				setSelector.add(zipFilePanel);
+			inner.add(setSelector, BorderLayout.CENTER);
+				// bingo options UI
+				JPanel optionPanel = new JPanel();
+				optionPanel.setLayout(new FlowLayout());
+					// "mark incorrect answers" option
+				optionPanel.add(wrongAnswerCheckbox = new JCheckBox());
+				optionPanel.add(new JLabel("Permanently Disable Incorrect Answers"));
+					// set bingo grid size
+					String[] str = {"4x4 Bingo Grid", "5x5 Bingo Grid", "6x6 Bingo Grid"};
+					gridSizeSelector = new JComboBox<>(str);
+				optionPanel.add(gridSizeSelector);
+			//inner.add(optionPanel, BorderLayout.PAGE_END);
+		this.add(inner, BorderLayout.CENTER);
+		
+		
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout());
+			// "start practice mode" button
+			startPractice = new JButton("START PRACTICE MODE");
+			startPractice.addActionListener(p);
+			buttons.add(startPractice);
+			
+			startBingo = new JButton("START BINGO GAME");
+			startBingo.addActionListener(p);
+			buttons.add(startBingo);
+		this.add(buttons, BorderLayout.PAGE_END);
+			
+	}*/
+	
 	public ArrayList<Word> genWordList() {
 		ArrayList<Word> wordList = new ArrayList<Word>();
 		for (ZipElement zip : zipFileList)
