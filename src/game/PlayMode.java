@@ -56,27 +56,26 @@ public class PlayMode implements WindowListener, ActionListener {
 			return;
 		}
 		if (src == menu.startPractice()) {
-			practice.update(wordList);
 			this.setState(State.PRACTICE);
+			practice.update(wordList);
 		} else if (src == menu.startBingo()) {
 			Collections.shuffle(wordList);
 			
 			int m = menu.getElementCount();
 			int n = m*m;
-			// commented out for debugging aid
-			/*if (wordList.size() < n) {
+			if (wordList.size() < n) {
 				JOptionPane.showConfirmDialog( window,
 						"Not enough words have been chosen for the current grid size ("+m+"x"+m+")! " + 
 						" Pick more word groups, or make the bingo board smaller.",
 						"WORD SET TOO SMALL", JOptionPane.DEFAULT_OPTION);
 				return;
-			}*/
+			}
 				
 			while (wordList.size() > n)
 				wordList.remove(n);
 			
-			bingo.update(wordList, m, menu.getMarkWrongAnswer());
 			this.setState(State.BINGO);
+			bingo.update(wordList, m, menu.getMarkWrongAnswer());
 		}
 	}
 	
