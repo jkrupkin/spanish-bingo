@@ -31,6 +31,7 @@ public class BingoUI extends JPanel implements ActionListener {
 		// "replay audio" button
 		replayAudio = new JButton();
 		replayAudio.addActionListener(this);
+		this.add(replayAudio, BorderLayout.PAGE_END);
 	}
 	
 	
