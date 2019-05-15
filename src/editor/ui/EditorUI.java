@@ -20,6 +20,10 @@ import shared.FileHandler;
 import shared.Word;
 
 public class EditorUI extends JFrame implements ActionListener {
+	// entry method for editor program
+	public static void main(String[] args) {
+		new EditorUI();
+	}
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640, HEIGHT = 480;
 
